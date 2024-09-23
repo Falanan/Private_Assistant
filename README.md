@@ -2,7 +2,7 @@
 
 # Introduction
 
-In this project, I'm going to build a fake vtuver. This project will use comments made during a live streaming as input to a language model, which gives a textual response. After that the replies will be feed into a TTS(Text-to-Speech) model, this TTS model can imitate someone's voice, just like a mocking bird. This modle can read the text. The next step is to mimic the changes in the shape of a human's mouth while speaking.
+In this project, I'm going to build a fake vtuver. This project will use comments made during a live streaming as input to a language model, which gives a textual response. After that the replies will be feed into a TTS(Text-to-Speech) model, this TTS model can imitate someone's voice, just like a mocking bird. This modle can read the text. The next step is to mimic the changes in the shape of a human's mouth while speaking. It can also works as a private voice assistant.
 
 ## Technologies
 
