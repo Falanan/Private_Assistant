@@ -67,4 +67,4 @@ Training SoVITS model is pretty simple and stright forward this project provided
 
 Based on personal interests, I collected two celebrities voices, models will be availabe soon on Hugging Face.
 
-<p style="color:'red';">Please be awared of that I have no control of further usage of open source models</p>
+<p style="color:red">Please be awared of that I have no control of further usage of open source models</p>
