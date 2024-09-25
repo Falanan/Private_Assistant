@@ -47,7 +47,7 @@ In this project, I'm going to build a false vtuver. This project will use commen
 
 Training SoVITS model is pretty simple and stright forward this project provided a perfect webui interface that can help we get all data prepared and training the model without coding, just simply clickings!!! As long as we cloned the project correctly we can run following command in terminal: `python webui.py`  Then it will bring us into a website. We can do all our operations there.
 
-Data preperation (Fatch Dataset tag):
+**Data preperation (Fatch Dataset tag):**
 
 1. Vocal separation, Deecho, Dereverberation
 2. Slice the source audio into small pieces. No attribute on the webui need to be changed, this will slice the audio into 10s pieces for better training propose
@@ -55,7 +55,7 @@ Data preperation (Fatch Dataset tag):
 4. Speech recognition. Generate transcript for all audio files.
 5. Correct all transcripts. Machine may make mistakes.
 
-Fine Tuning (GPT-SoVITS-TTS tag):
+**Fine Tuning (GPT-SoVITS-TTS tag):**
 
 1. Dataset formating
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model
