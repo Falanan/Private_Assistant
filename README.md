@@ -4,10 +4,11 @@
 
 * Wenbo Zhang ([LinkedIn](https://www.linkedin.com/in/wenbo-zhang-falana/))
 
-4th Year Computer Science Student Passion in Computer Vision | Machine Learning | AI.
+4th Year Computer Science Student Passion in Computer Vision | Machine Learning | AI
 
-Everything about High Performance Computing!       **!!!!!!!!!!  HPC MAGIC  !!!!!!!!!!**
+Everything about High Performance Computing!
 
+**!!!!!!!!!!!  HPC MAGIC  !!!!!!!!!!**
 
 # About this course
 
@@ -34,6 +35,10 @@ In this project, I'm going to build a false vtuver. This project will use commen
   2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip
   3. Stable Diffusion: Generate Vtuber image
 
+# Tested environment
+
+* TODO
+
 ## Data collection
 
 * LLM: Pretrained model from ChatGLM project.
@@ -49,13 +54,17 @@ Training SoVITS model is pretty simple and stright forward this project provided
 
 **Data preperation (Fatch Dataset tag):**
 
-1. Vocal separation, Deecho, Dereverberation
-2. Slice the source audio into small pieces. No attribute on the webui need to be changed, this will slice the audio into 10s pieces for better training propose
+1. Vocal separation, DeEcho, DeReverberation.
+2. Slice the source audio into small pieces. No attribute on the webui need to be changed, this will slice the audio into 10s pieces for better training propose.
 3. Denoise all audio files.
 4. Speech recognition. Generate transcript for all audio files.
 5. Correct all transcripts. Machine may make mistakes.
 
 **Fine Tuning (GPT-SoVITS-TTS tag):**
 
-1. Dataset formating
-2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model
+1. Dataset formating.
+2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
+
+Based on personal interests, I collected two celebrities voices, models will be availabe soon on Hugging Face.
+
+<p style="color:'red';">Please be awared of that I have no control of further usage of open source models</p>
