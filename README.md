@@ -65,6 +65,14 @@ Training SoVITS model is pretty simple and stright forward this project provided
 1. Dataset formating.
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
 
-Based on personal interests, I collected two celebrities voices, models will be availabe soon on Hugging Face.
+Based on personal interests, I collected several celebrities voices, models will be availabe soon on Hugging Face.
 
-<p style="color:red">Please be awared of that I have no control of further usage of open source models</p>
+**Please be awared of that I have no control of further usage of open source models**
+
+Fine tuned models list:
+
+* [X]  Zhang Yaqian(张雅倩): ([抖音](https://v.douyin.com/ikvoFcd7/)). 6 hours streaming recording.
+* [X]  CZMJ(橙子喵酱)：([X](https://x.com/chengzimiaoj?s=21)), ([X](https://x.com/chengzimiaoji1?s=21)), ([抖音](https://v.douyin.com/ikvoxF93/)). 40 minutes streaming recording.
+* [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
+
+### Wav2Lip
