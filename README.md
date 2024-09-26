@@ -10,7 +10,7 @@ Everything about High Performance Computing!
 
 **!!!!!!!!!!!  HPC MAGIC  !!!!!!!!!!**
 
-# About this course
+## About this course
 
 **CSCI 4052U Machine Learning 2: Advanced Topics**
 
@@ -35,7 +35,7 @@ In this project, I'm going to build a false vtuver. This project will use commen
   2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip
   3. Stable Diffusion: Generate Vtuber image
 
-# Tested environment
+## Tested environment
 
 * TODO
 
