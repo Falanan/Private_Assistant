@@ -18,7 +18,7 @@ This course is for students with a foundational understanding of machine learnin
 model management, training and fine-tuning, quantization, model distillation, knowledge infusion,
 and performance monitoring.
 
-* Instructor ([Ken Pu](https://kenpu.ca/))
+* Instructor ([Ken Q. Pu](https://kenpu.ca/))
 * Course website ([Machine Learning 2: Advanced Topics](https://csci4052u.science.ontariotechu.ca/))
 
 ## Introduction
