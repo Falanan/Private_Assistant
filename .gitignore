@@ -4,3 +4,4 @@
 /Data_Collection/lrs2_preprocessed
 /Wav2Lip_train/Wav2Lip
 Data_Collection/archive.zip
+*.pth
