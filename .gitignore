@@ -1,4 +1,6 @@
 
 .DS_Store
-/Data_Collection
+/Data_Collection/face_detection
+/Data_Collection/lrs2_preprocessed
 /Wav2Lip_train/Wav2Lip
+Data_Collection/archive.zip
