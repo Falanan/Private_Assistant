@@ -6,3 +6,4 @@ scenedetect
 opencv-python
 python_speech_features
 librosa
+matplotlib
