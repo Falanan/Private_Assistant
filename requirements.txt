@@ -1,0 +1,8 @@
+torch
+torchvision
+numpy
+scipy
+scenedetect
+opencv-python
+python_speech_features
+librosa
