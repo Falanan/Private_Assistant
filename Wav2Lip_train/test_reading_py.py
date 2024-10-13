@@ -263,7 +263,7 @@ class Dataset(object):
 # # Read all data
 
 # %%
-ds=Dataset("train_01")
+ds=Dataset("train")
 x,mel,t=ds[0]
 # print(x.shape)
 # print(mel.shape)
