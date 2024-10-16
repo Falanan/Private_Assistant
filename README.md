@@ -76,3 +76,4 @@ Fine tuned models list:
 * [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
 
 ### Wav2Lip
+https://visualstudio.microsoft.com/visual-cpp-build-tools/
