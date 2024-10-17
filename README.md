@@ -28,11 +28,12 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 ## Technologies
 
 * NLP Technologies:
-  1. ([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md)) Chat LLM
-  2. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
+  1. ~~([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md))  - A Chinese specified Large Language Model~~
+  2. ([GLM-4](https://github.com/THUDM/GLM-4)) - Large Language Model works for both English and Chinese
+  3. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
 * Computer Vision Technologies:
-  1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip Movement
-  2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip
+  1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip, This model works better for English
+  2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip. This model works better for Chinese
   3. Stable Diffusion: Generate Vtuber image
 
 ## Tested environment
@@ -75,7 +76,10 @@ Fine tuned models list:
 * [X]  Orangin Neko(橙子喵酱)：([Social Media](https://linktr.ee/chengzimiaoj)). 40 minutes streaming recording.
 * [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
 
-### Wav2Lip Models
+### GLM-4
 
+In this part of this project, I'll use GLM-4-Chat model. The original model takes around 21Gbs GPU Ram to run, but this model can run under INT4 quantize. Whis INT4 quantize the precision would be lower but only takes 8Gbs GPU Ram, which really saves space for other models.
+
+### Wav2Lip/MuseTalk
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
