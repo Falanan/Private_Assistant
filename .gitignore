@@ -8,3 +8,10 @@ Data_Collection/archive.zip
 *.avi
 *.mp4
 wav2lip_core/output/results.txt
+*.pyc
+/musetalk/results
+/musetalk/models/musetalk
+/musetalk/models/dwpose
+/musetalk/models/face-parse-bisent
+/musetalk/models/sd-vae-ft-mse
+/musetalk/models/whisper
