@@ -29,7 +29,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * NLP Technologies:
   1. ~~([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md))  - A Chinese specified Large Language Model~~
-  2. ([GLM-4](https://github.com/THUDM/GLM-4)) - Large Language Model works for both English and Chinese
+  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for both English and Chinese
   3. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
 * Computer Vision Technologies:
   1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip, This model works better for English
@@ -44,7 +44,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * LLM: Pretrained model from ChatGLM project.
 * Text-to-Speech: Collect game charactor audios or voice actors posts.
-* Wav2Lip: Waiting permission to ([LRS2](https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrs2.html))dataset. If no respond, I'll use open source MuseTalk pretrained model
+* Wav2Lip: Trained on ([LRS2](https://www.robots.ox.ac.uk/~vgg/data/lip_reading/lrs2.html))dataset.
 * Stable Diffusion: Pretrained model and LORAs to generate the chatactor image for this project.
 
 ## Model Training / Model collection
@@ -81,5 +81,13 @@ Fine tuned models list:
 In this part of this project, I'll use GLM-4-Chat model. The original model takes around 21Gbs GPU Ram to run, but this model can run under INT4 quantize. Whis INT4 quantize the precision would be lower but only takes 8Gbs GPU Ram, which really saves space for other models.
 
 ### Wav2Lip/MuseTalk
+
+Training a model on LRS2 dataset from scratch takes really a long time and require a really good hardwares. For this part, I'll use pretrained models first. If time permitted, I'll train a model from very beginning.
+
+## Installation
+
+
+
+
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
