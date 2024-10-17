@@ -23,7 +23,7 @@ and performance monitoring.
 
 ## Introduction
 
-In this project, I'm going to build a false vtuver. This project will use comments made during a live streaming as input to a language model, which gives a textual response. After that the replies will be feed into a TTS(Text-to-Speech) model, this TTS model can imitate someone's voice, just like a mocking bird. This modle can read the text. The next step is to mimic the changes in the shape of a human's mouth while speaking. It can also works as a private voice assistant too!
+In this project, I'm going to build a private assistant. This model contains 3 main components: Large language models, Text-to-Speech models, Wav-to-Lip models.
 
 ## Technologies
 
@@ -75,5 +75,7 @@ Fine tuned models list:
 * [X]  Orangin Neko(橙子喵酱)：([Social Media](https://linktr.ee/chengzimiaoj)). 40 minutes streaming recording.
 * [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
 
-### Wav2Lip
+### Wav2Lip Models
+
+
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
