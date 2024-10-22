@@ -5,8 +5,6 @@
 /Wav2Lip_train/Wav2Lip
 Data_Collection/archive.zip
 *.pth
-*.avi
-*.mp4
 wav2lip_core/output/results.txt
 *.pyc
 /musetalk/results
@@ -15,3 +13,5 @@ wav2lip_core/output/results.txt
 /musetalk/models/face-parse-bisent
 /musetalk/models/sd-vae-ft-mse
 /musetalk/models/whisper
+gptsovit_core/text/G2PWModel_1.1.zip
+gptsovit_core/text/G2PWModel/g2pW.onnx
