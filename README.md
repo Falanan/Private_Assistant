@@ -29,12 +29,12 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * NLP Technologies:
   1. ~~([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md))  - A Chinese specified Large Language Model~~
-  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for both English and Chinese
+  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for Multi - Language
   3. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
 * Computer Vision Technologies:
   1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip, This model works better for English
-  2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip. This model works better for Chinese
-  3. Stable Diffusion: Generate Vtuber image
+  2. ([MuseTalk](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file)) Alternative for Wav2Lip. This model works better for Asian Languages
+  3. ~~Stable Diffusion: Generate Avatar images~~ (If time pemitted)
 
 ## Tested environment
 
@@ -86,8 +86,8 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 ## Installation
 
-
-
-
+TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
 
 https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+## Inference results
