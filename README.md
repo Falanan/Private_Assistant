@@ -53,7 +53,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 Training SoVITS model is pretty simple and stright forward this project provided a perfect webui interface that can help we get all data prepared and training the model without coding, just simply clickings!!! As long as we cloned the project correctly we can run following command in terminal: `python webui.py`  Then it will bring us into a website. We can do all our operations there.
 
-**Data preperation (Fatch Dataset tag):**
+**Data preperation:**
 
 1. Vocal separation, DeEcho, DeReverberation.
 2. Slice the source audio into small pieces. No attribute on the webui need to be changed, this will slice the audio into 10s pieces for better training propose.
@@ -61,7 +61,7 @@ Training SoVITS model is pretty simple and stright forward this project provided
 4. Speech recognition. Generate transcript for all audio files.
 5. Correct all transcripts. Machine may make mistakes.
 
-**Fine Tuning (GPT-SoVITS-TTS tag):**
+**Fine Tuning :**
 
 1. Dataset formating.
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
@@ -72,9 +72,16 @@ Based on personal interests, I collected several celebrities voices, models will
 
 Fine tuned models list:
 
+* Chinese Sepsific
+
 * [X]  Zhang Yaqian(张雅倩): ([抖音](https://v.douyin.com/ikvoFcd7/)), ([Red Book](https://www.xiaohongshu.com/user/profile/5ab2338b4eacab7968ac3330?xhsshare=CopyLink&appuid=61b25feb000000001000632f&apptime=1727475569)). 6 hours streaming recording.
 * [X]  Orangin Neko(橙子喵酱)：([Social Media](https://linktr.ee/chengzimiaoj)). 40 minutes streaming recording.
+
 * [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
+
+* English Sepsific
+
+* [ ]  Genshin Impact Character: Klee.    Genshin Impact game original sound track
 
 ### GLM-4
 
@@ -88,6 +95,8 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
 
-https://visualstudio.microsoft.com/visual-cpp-build-tools/
+
+MuseTalk inference need to install Visual Studio, download from there: [https://visualstudio.microsoft.com/visual-cpp-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools)
+
 
 ## Inference results
