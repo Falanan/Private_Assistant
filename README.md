@@ -66,7 +66,7 @@ Training SoVITS model is pretty simple and stright forward this project provided
 1. Dataset formating.
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
 
-Based on personal interests, I collected several celebrities voices, models will be availabe soon on Hugging Face.
+Based on personal interests, I collected several celebrities voices, models are availabe on [Hugging Face](https://huggingface.co/Falanan/Private_Assistant_Models).
 
 **Please be awared of that I have no control of further usage of open source models**
 
@@ -81,7 +81,7 @@ Fine tuned models list:
 
 * English Sepsific
 
-* [ ]  Genshin Impact Character: Yae Miko.    Data Source: Genshin Impact game original sound track
+* [ ]  Genshin Impact Character: Yae Miko.  Data Source: Genshin Impact game original sound track
 
 ### GLM-4
 
