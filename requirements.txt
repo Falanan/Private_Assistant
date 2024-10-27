@@ -1,5 +1,8 @@
-torch
-torchvision
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.4.1 
+torchvision==0.19.1 
+torchaudio==2.4.1
+
 numpy
 scipy
 scenedetect
@@ -7,3 +10,23 @@ opencv-python
 python_speech_features
 librosa
 matplotlib
+
+diffusers
+accelerate
+tensorflow
+tensorboard
+soundfile
+
+gdown
+requests
+imageio[ffmpeg]
+
+omegaconf
+ffmpeg-python
+gradio
+spaces
+moviepy
+
+
+
+onnxruntime-gpu

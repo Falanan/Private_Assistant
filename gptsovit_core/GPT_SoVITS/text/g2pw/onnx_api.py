@@ -54,7 +54,12 @@ def predict(session, onnx_input: Dict[str, Any],
 def download_and_decompress(model_dir: str='G2PWModel/'):
     if not os.path.exists(model_dir):
         parent_directory = os.path.dirname(model_dir)
-        zip_dir = os.path.join(parent_directory,"G2PWModel_1.1.zip")
+        # zip_dir = os.path.join(parent_directory,"G2PWModel_1.1.zip")
+        # zip_dir = os.path.join(parent_directory,model_dir)
+        # zip_dir = os.path.join(model_dir,"G2PWModel_1.1.zip")
+        # print("zip_dir: ", zip_dir)
+        # print("os.path: ", os.path.curdir)
+        zip_dir = "Models_Pretrained\pretrained_models\G2PWModel_1.1.zip"
         extract_dir = os.path.join(parent_directory,"G2PWModel_1.1")
         extract_dir_new = os.path.join(parent_directory,"G2PWModel")
         print("Downloading g2pw model...")

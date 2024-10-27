@@ -29,7 +29,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * NLP Technologies:
   1. ~~([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md))  - A Chinese specified Large Language Model~~
-  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for Multi - Language
+  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for Multi-Language
   3. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
 * Computer Vision Technologies:
   1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip, This model works better for English
@@ -93,10 +93,20 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 ## Installation
 
-TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
+TODO: On going due to there are many redundant modules for webui and training. Need time to figure out the core requirement.
+
+### mmlab packages for MuseTalk
+```bash
+pip install --no-cache-dir -U openmim 
+mim install "mmengine==0.10.5"
+mim install "mmcv==2.1.0" 
+mim install "mmdet==3.2.0" 
+mim install "mmpose==1.3.2" 
+```
 
 
 MuseTalk inference need to install Visual Studio, download from there: [https://visualstudio.microsoft.com/visual-cpp-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools)
+
 
 
 ## Inference results
