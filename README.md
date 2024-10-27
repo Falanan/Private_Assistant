@@ -81,7 +81,7 @@ Fine tuned models list:
 
 * English Sepsific
 
-* [ ]  Genshin Impact Character: Yae Miko.  Data Source: Genshin Impact game original sound track
+* [X]  Genshin Impact Character: Yae Miko.  Data Source: Genshin Impact game original sound track
 
 ### GLM-4
 
