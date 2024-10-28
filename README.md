@@ -116,10 +116,11 @@ MuseTalk inference need to install Visual Studio, download from there: [https://
   <div style="flex: 1; margin-right: 20px;">
     <p>Original Audio 1:</p>
     <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
-    <audio controls>
+    <!-- <audio controls>
       <source src="https://github.com/Falanan/Private_Assistant/blob/main/Inference_results/Originals/Yae_Miko_Refer.wav" type="audio/wav">
       Your browser does not support the audio element.
-    </audio>
+    </audio> -->
+    https://github.com/Falanan/Private_Assistant/blob/main/Inference_results/GPT_SoVITS/en/Yae_Miko_output.wav
   </div>
   
   <div style="flex: 1; margin-left: 20px;">
