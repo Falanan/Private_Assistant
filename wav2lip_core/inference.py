@@ -88,7 +88,7 @@ def face_detect(images):
 	pady1, pady2, padx1, padx2 = args.pads
 	for rect, image in zip(predictions, images):
 		if rect is None:
-			cv2.imwrite('temp/faulty_frame.jpg', image) # check this frame where the face was not detected.
+			cv2.imwrite('wav2lip_core/temp/faulty_frame.jpg', image) # check this frame where the face was not detected.
 			raise ValueError('Face not detected! Ensure the video contains a face in all the frames.')
 
 		y1 = max(0, rect[1] - pady1)
@@ -114,7 +114,7 @@ def datagen(frames, mels):
 		else:
 			face_det_results = face_detect([frames[0]])
 	else:
-		print('Using the specified bounding box instead of face detection...')
+		# print('Using the specified bounding box instead of face detection...')
 		y1, y2, x1, x2 = args.box
 		face_det_results = [[f[y1: y2, x1:x2], (y1, y2, x1, x2)] for f in frames]
 
@@ -155,11 +155,11 @@ def datagen(frames, mels):
 
 mel_step_size = 16
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
-print('Using {} for inference.'.format(device))
+# print('Using {} for inference.'.format(device))
 
 def _load(checkpoint_path):
 	if device == 'cuda':
-		checkpoint = torch.load(checkpoint_path)
+		checkpoint = torch.load(checkpoint_path, weights_only=True)
 	else:
 		checkpoint = torch.load(checkpoint_path,
 								map_location=lambda storage, loc: storage)
@@ -167,7 +167,7 @@ def _load(checkpoint_path):
 
 def load_model(path):
 	model = Wav2Lip()
-	print("Load checkpoint from: {}".format(path))
+	# print("Load checkpoint from: {}".format(path))
 	checkpoint = _load(path)
 	s = checkpoint["state_dict"]
 	new_s = {}
@@ -190,7 +190,7 @@ def main():
 		video_stream = cv2.VideoCapture(args.face)
 		fps = video_stream.get(cv2.CAP_PROP_FPS)
 
-		print('Reading video frames...')
+		# print('Reading video frames...')
 
 		full_frames = []
 		while 1:
@@ -212,14 +212,14 @@ def main():
 
 			full_frames.append(frame)
 
-	print ("Number of frames available for inference: "+str(len(full_frames)))
+	# print ("Number of frames available for inference: "+str(len(full_frames)))
 
 	if not args.audio.endswith('.wav'):
-		print('Extracting raw audio...')
-		command = 'ffmpeg -y -i {} -strict -2 {}'.format(args.audio, 'temp/temp.wav')
+		# print('Extracting raw audio...')
+		command = 'ffmpeg -y -i {} -strict -2 {}'.format(args.audio, 'wav2lip_core/temp/temp.wav')
 
 		subprocess.call(command, shell=True)
-		args.audio = 'temp/temp.wav'
+		args.audio = 'wav2lip_core/temp/temp.wav'
 
 	wav = audio.load_wav(args.audio, 16000)
 	mel = audio.melspectrogram(wav)
@@ -239,7 +239,7 @@ def main():
 		mel_chunks.append(mel[:, start_idx : start_idx + mel_step_size])
 		i += 1
 
-	print("Length of mel chunks: {}".format(len(mel_chunks)))
+	# print("Length of mel chunks: {}".format(len(mel_chunks)))
 
 	full_frames = full_frames[:len(mel_chunks)]
 
@@ -250,10 +250,10 @@ def main():
 											total=int(np.ceil(float(len(mel_chunks))/batch_size)))):
 		if i == 0:
 			model = load_model(args.checkpoint_path)
-			print ("Model loaded")
+			# print ("Model loaded")
 
 			frame_h, frame_w = full_frames[0].shape[:-1]
-			out = cv2.VideoWriter('temp/result.avi', 
+			out = cv2.VideoWriter('wav2lip_core/temp/result.avi', 
 									cv2.VideoWriter_fourcc(*'DIVX'), fps, (frame_w, frame_h))
 
 		img_batch = torch.FloatTensor(np.transpose(img_batch, (0, 3, 1, 2))).to(device)
@@ -273,7 +273,7 @@ def main():
 
 	out.release()
 
-	command = 'ffmpeg -y -i {} -i {} -strict -2 -q:v 1 {}'.format(args.audio, 'temp/result.avi', args.outfile)
+	command = 'ffmpeg -loglevel quiet -y -i {} -i {} -strict -2 -q:v 1 {}'.format(args.audio, 'wav2lip_core/temp/result.avi', args.outfile)
 	subprocess.call(command, shell=platform.system() != 'Windows')
 
 if __name__ == '__main__':
