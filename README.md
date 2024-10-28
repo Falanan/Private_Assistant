@@ -117,7 +117,7 @@ MuseTalk inference need to install Visual Studio, download from there: [https://
     <p>Original Audio 1:</p>
     <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
     <audio controls>
-      <source src="Inference_results\Originals\Yae_Miko_Refer.wav" type="audio/wav">
+      <source src="https://github.com/Falanan/Private_Assistant/blob/main/Inference_results/Originals/Yae_Miko_Refer.wav" type="audio/wav">
       Your browser does not support the audio element.
     </audio>
   </div>
