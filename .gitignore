@@ -17,3 +17,4 @@ gptsovits_core/text/G2PWModel_1.1.zip
 gptsovits_core/text/G2PWModel/g2pW.onnx
 GPT_SoVITS/text/G2PWModel/g2pW.onnx
 *.ckpt
+/gptsovit_core/GPT_SoVITS/text/G2PWModel

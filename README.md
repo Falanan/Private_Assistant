@@ -96,6 +96,15 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
 
+### mmlab packages for MuseTalk
+```
+pip install --no-cache-dir -U openmim 
+mim install "mmengine==0.10.5"
+mim install "mmcv==2.1.0" 
+mim install "mmdet==3.2.0" 
+mim install "mmpose==1.3.2" 
+```
+
 MuseTalk inference need to install Visual Studio, download from there: [https://visualstudio.microsoft.com/visual-cpp-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools)
 
 ## Inference results
@@ -110,13 +119,16 @@ Note: Since Github does not support audio files(wav & mp3) embedded. So, I decid
   </tr>
   <tr>
     <td>
-      <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
-      <img src=Inference_results/Originals/00217-3874958443_tiled.png width="95%">
+      <img src=Inference_results\Originals\Yae_Miko_Avatar.png width="95%">
       <p>Credits: <a href="https://civitai.com/images/1105384">Civitai AI</a></p>
+    </td>
+    <td>
+      <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
+      <video src=Inference_results/Wav2Lip/Yae_Miko_refer.mp4 controls preload></video>
     </td>
     <td >
       <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
-      <video src=0 controls preload></video>
+      <video src=Inference_results/Wav2Lip/Yae_Miko_inference.mp4 controls preload></video>
     </td>
   </tr>
   <tr>
