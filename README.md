@@ -38,7 +38,9 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 ## Tested environment
 
-* TODO
+* Windows11 23H2
+* Python 3.10.15 under Conda environmnet
+* Nvidia 2080Ti 22GB with Hardware-Accelerated GPU Scheduling enabled. Reason: When doing inference, VRAM taken will slightly exceed 22GB.
 
 ## Data collection
 
@@ -66,7 +68,7 @@ Training SoVITS model is pretty simple and stright forward this project provided
 1. Dataset formating.
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
 
-Based on personal interests, I collected several celebrities voices, models will be availabe soon on Hugging Face.
+Based on personal interests, I collected several celebrities voices, models are availabe on [Hugging Face](https://huggingface.co/Falanan/Private_Assistant_Models).
 
 **Please be awared of that I have no control of further usage of open source models**
 
@@ -80,7 +82,7 @@ Fine tuned models list:
 
 * English Sepsific
 
-* [ ]  Genshin Impact Character: Klee.    Genshin Impact game original sound track
+* [X]  Genshin Impact Character: Klee.    Genshin Impact game original sound track
 
 ### GLM-4
 
