@@ -112,36 +112,50 @@ MuseTalk inference need to install Visual Studio, download from there: [https://
 Note: Since Github does not support audio files(wav & mp3) embedded. So, I decided to combine two parts together.
 
 ### Wav2Lip & GPT-SoVITS
+Original Sound Track Reference Text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.
+
+Inference text: Hello master, I am Yae Miko. What can I do for you?
 <table class="center">
   <tr style="font-weight: bolder;text-align:center;">
         <td width="33%">Original Image/Video</td>
+        <td width="33%">Original Sound Track + Wav2Lip</td>
         <td width="33%">GPT-SoVITS + Wav2Lip</td>
   </tr>
   <tr>
     <td>
+    <p>Avatar: Yae Miko</p>
       <img src=Inference_results\Originals\Yae_Miko_Avatar.png width="95%">
       <p>Credits: <a href="https://civitai.com/images/1105384">Civitai AI</a></p>
     </td>
     <td>
-      <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
       <video src=https://github.com/user-attachments/assets/af5f4770-744f-4f48-8ed5-6a6cb881a47b controls preload></video>
     </td>
     <td >
-      <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
       <video src=https://github.com/user-attachments/assets/7cc6fd65-0f46-47c8-aa5d-31c559f78019 controls preload></video>   
     </td>
   </tr>
+</table >
+
+### MuseTalk & GPT-SoVITS
+Original Text: 对啊，小猫还会外语，哎，我有个特别大的疑惑，猫和狗能听懂对方讲话吗？我感觉他们应该也有自己的语言吧。(English Translation: Yeah, kittens also speak foreign languages... hey, I have a particularly big question... can cats and dogs understand each other's speech? I feel like they should have their own language too.)
+
+Inference Text: 主人你好，请问你需要什么帮助？(English Translation: Hello Master, What can I do for you?)
+
+<table>
+  <tr style="font-weight: bolder;text-align:center;">
+        <td width="33%">Original Image</td>
+        <td width="33%">Original Sound Track + MuseTalk</td>
+        <td width="33%">GPT-SoVITS + MuseTalk</td>
+  </tr>
   <tr>
     <td>
-      <img src=0  width="95%">
+      <img src=Inference_results\Originals\Yaqian_original_image.jpg  width="95%">
+    </td>
+    <td >
+      <video src=0 controls preload></video>
     </td>
     <td >
       <video src=0 controls preload></video>
     </td>
   </tr>
-
-
-
-
-
 </table >

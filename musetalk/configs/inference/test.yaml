@@ -1,10 +1,12 @@
-task_0:
- video_path: "data/video/yongen.mp4"
- audio_path: "data/audio/yongen.wav"
+# task_0:
+#  video_path: "data/video/yongen.mp4"
+#  audio_path: "data/audio/yongen.wav"
 
-task_1:
- video_path: "data/video/sun.mp4"
- audio_path: "data/audio/sun.wav"
- bbox_shift: -7
+# task_1:
+#  video_path: "data/video/sun.mp4"
+#  audio_path: "data/audio/sun.wav"
+#  bbox_shift: -7
   
-
+task_0:
+ video_path: "Inference_results/Originals/Yaqian_original_image.jpg"
+ audio_path: "Inference_results/GPT_SoVITS/zh/YaQian_inference.wav"
