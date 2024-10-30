@@ -128,7 +128,7 @@ Note: Since Github does not support audio files(wav & mp3) embedded. So, I decid
     </td>
     <td >
       <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
-<!--       <video src=Inference_results/Wav2Lip/Yae_Miko_inference.mp4 controls preload></video> -->
+      <video src=https://github.com/user-attachments/assets/7cc6fd65-0f46-47c8-aa5d-31c559f78019 controls preload></video>   
     </td>
   </tr>
   <tr>
