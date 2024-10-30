@@ -153,10 +153,10 @@ Inference Text: 主人你好，请问你需要什么帮助？(English Translatio
       <p>Credits: <a href="http://xhslink.com/a/srup3KJBV3NY">Link to the post</a></p>
     </td>
     <td >
-      <video src=0 controls preload></video>
+      <video src=https://github.com/user-attachments/assets/e0c7c55f-9b03-4f4f-b8ea-c0785aceaf59 controls preload></video>
     </td>
     <td >
-      <video src=0 controls preload></video>
+      <video src=https://github.com/user-attachments/assets/8d1558af-2046-4c8b-a4bc-56bd215e8c19 controls preload></video>
     </td>
   </tr>
 </table >
