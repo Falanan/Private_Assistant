@@ -124,12 +124,7 @@ Note: Since Github does not support audio files(wav & mp3) embedded. So, I decid
     </td>
     <td>
       <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
-<!--       <video src=Inference_results/Wav2Lip/Yae_Miko_refer.mp4 controls preload></video> -->
-      
-
-https://github.com/user-attachments/assets/af5f4770-744f-4f48-8ed5-6a6cb881a47b
-
-
+      <video src=https://github.com/user-attachments/assets/af5f4770-744f-4f48-8ed5-6a6cb881a47b controls preload></video>
     </td>
     <td >
       <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
