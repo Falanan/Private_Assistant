@@ -8,5 +8,5 @@
 #  bbox_shift: -7
   
 task_0:
- video_path: "Inference_results/Originals/Yaqian_original_image.jpg"
- audio_path: "Inference_results/GPT_SoVITS/zh/YaQian_inference.wav"
+ video_path: "Inference_results/Originals/Yaqian_original_image_preprocessed.jpg"
+ audio_path: "Inference_results/Originals/YaQian_Refer.wav"
