@@ -29,7 +29,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * NLP Technologies:
   1. ~~([ChatGLM](https://github.com/THUDM/ChatGLM-6B/blob/main/README_en.md))  - A Chinese specified Large Language Model~~
-  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for Multi-Language
+  2. ([GLM-4](https://github.com/THUDM/GLM-4/blob/main/README_en.md)) - Large Language Model works for Multi - Language
   3. ([GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS?tab=readme-ov-file)) Text-to-Speech Model, this model reacts like a mocking bird, it can imitate someone's voice.
 * Computer Vision Technologies:
   1. ([Wav2Lip](https://github.com/Rudrabha/Wav2Lip)) Speech-to-Lip, This model works better for English
@@ -66,7 +66,7 @@ Training SoVITS model is pretty simple and stright forward this project provided
 1. Dataset formating.
 2. Fine-tuned Training. In this step, we will train both SoVITS model and GPT model.
 
-Based on personal interests, I collected several celebrities voices, models are availabe on [Hugging Face](https://huggingface.co/Falanan/Private_Assistant_Models).
+Based on personal interests, I collected several celebrities voices, models will be availabe soon on Hugging Face.
 
 **Please be awared of that I have no control of further usage of open source models**
 
@@ -74,14 +74,13 @@ Fine tuned models list:
 
 * Chinese Sepsific
 
-* [X]  Zhang Yaqian(张雅倩): ([抖音](https://v.douyin.com/ikvoFcd7/)), ([Red Book](https://www.xiaohongshu.com/user/profile/5ab2338b4eacab7968ac3330?xhsshare=CopyLink&appuid=61b25feb000000001000632f&apptime=1727475569)). Data Source: 6 hours streaming recording.
-* [X]  Orangin Neko(橙子喵酱)：([Social Media](https://linktr.ee/chengzimiaoj)). Data Source: 40 minutes streaming recording.
-
+* [X]  Zhang Yaqian(张雅倩): ([抖音](https://v.douyin.com/ikvoFcd7/)), ([Red Book](https://www.xiaohongshu.com/user/profile/5ab2338b4eacab7968ac3330?xhsshare=CopyLink&appuid=61b25feb000000001000632f&apptime=1727475569)). 6 hours streaming recording.
+* [X]  Orangin Neko(橙子喵酱)：([Social Media](https://linktr.ee/chengzimiaoj)). 40 minutes streaming recording.
 * [ ]  Linvo takls about cosmos(Linvo说宇宙): ([Bilibili](https://space.bilibili.com/357515451?spm_id_from=333.337.0.0)).
 
 * English Sepsific
 
-* [X]  Genshin Impact Character: Yae Miko.  Data Source: Genshin Impact game original sound track
+* [ ]  Genshin Impact Character: Klee.    Genshin Impact game original sound track
 
 ### GLM-4
 
@@ -93,42 +92,42 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 ## Installation
 
-TODO: On going due to there are many redundant modules for webui and training. Need time to figure out the core requirement.
-
-### mmlab packages for MuseTalk
-```bash
-pip install --no-cache-dir -U openmim 
-mim install "mmengine==0.10.5"
-mim install "mmcv==2.1.0" 
-mim install "mmdet==3.2.0" 
-mim install "mmpose==1.3.2" 
-```
-
+TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
 
 MuseTalk inference need to install Visual Studio, download from there: [https://visualstudio.microsoft.com/visual-cpp-build-tools](https://visualstudio.microsoft.com/visual-cpp-build-tools)
 
-
-
 ## Inference results
-### GPT-Sovits
-#### Yae Miko model reference
-<div style="display: flex; justify-content: space-between; align-items: center;">
-  <div style="flex: 1; margin-right: 20px;">
-    <p>Original Audio 1:</p>
-    <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
-    <!-- <audio controls>
-      <source src="https://github.com/Falanan/Private_Assistant/blob/main/Inference_results/Originals/Yae_Miko_Refer.wav" type="audio/wav">
-      Your browser does not support the audio element.
-    </audio> -->
-    https://github.com/Falanan/Private_Assistant/blob/main/Inference_results/GPT_SoVITS/en/Yae_Miko_output.wav
-  </div>
-  
-  <div style="flex: 1; margin-left: 20px;">
-    <p>Inference Audio 2:</p>
-    <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
-    <audio controls>
-      <source src="Inference_results\GPT_SoVITS\en\Yae_Miko_output.wav" type="audio/wav">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-</div>
+
+Note: Since Github does not support audio files(wav & mp3) embedded. So, I decided to combine two parts together.
+
+### Wav2Lip & GPT-SoVITS
+<table class="center">
+  <tr style="font-weight: bolder;text-align:center;">
+        <td width="33%">Original Image/Video</td>
+        <td width="33%">GPT-SoVITS + Wav2Lip</td>
+  </tr>
+  <tr>
+    <td>
+      <p>Reference text: Not bad at all. I'm glad you finally got to reveal the tricks you've been keeping up your sleeve.</p>
+      <img src=Inference_results/Originals/00217-3874958443_tiled.png width="95%">
+      <p>Credits: <a href="https://civitai.com/images/1105384">Civitai AI</a></p>
+    </td>
+    <td >
+      <p>Inference text: Hello master, I am Yae Miko. What can I do for you?</p>
+      <video src=0 controls preload></video>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src=0  width="95%">
+    </td>
+    <td >
+      <video src=0 controls preload></video>
+    </td>
+  </tr>
+
+
+
+
+
+</table >
