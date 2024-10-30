@@ -40,7 +40,7 @@ In this project, I'm going to build a private assistant. This model contains 3 m
 
 * Windows11 23H2
 * Python 3.10.15 under Conda environmnet
-* Nvidia 2080Ti 22GB with Hardware-Accelerated GPU Scheduling enabled. Reason: When doing inference, VRAM taken will slightly exceed 22GB.
+* Nvidia 2080Ti 22GB with Hardware-Accelerated GPU Scheduling enabled. Reason: When doing inference, VRAM taken may slightly exceed 22GB.
 
 ## Data collection
 
@@ -94,7 +94,7 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 ## Installation
 
-TODO: On going due to there are many redundant modules for webui and training. Need to take times to figure the core requirement.
+TODO: On going due to there are many redundant modules for webui and training. Need times to figure out the core requirement.
 
 ### mmlab packages for MuseTalk
 ```
@@ -117,7 +117,7 @@ Original Sound Track Reference Text: Not bad at all. I'm glad you finally got to
 Inference text: Hello master, I am Yae Miko. What can I do for you?
 <table class="center">
   <tr style="font-weight: bolder;text-align:center;">
-        <td width="33%">Original Image/Video</td>
+        <td width="33%">Original Image</td>
         <td width="33%">Original Sound Track + Wav2Lip</td>
         <td width="33%">GPT-SoVITS + Wav2Lip</td>
   </tr>
@@ -150,6 +150,7 @@ Inference Text: 主人你好，请问你需要什么帮助？(English Translatio
   <tr>
     <td>
       <img src=Inference_results\Originals\Yaqian_original_image.jpg  width="95%">
+      <p>Credits: <a href="http://xhslink.com/a/srup3KJBV3NY">Link to the post</a></p>
     </td>
     <td >
       <video src=0 controls preload></video>
