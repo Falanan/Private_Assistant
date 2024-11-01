@@ -9,7 +9,7 @@ sys.path.append("..")
 class Audio2Feature():
     def __init__(self, 
                  whisper_model_type="tiny",
-                 model_path="./models/whisper/tiny.pt"):
+                 model_path="Models_Pretrained/musetalk/whisper/tiny.pt"):
         self.whisper_model_type = whisper_model_type
         self.model = load_model(model_path) #
 
@@ -82,7 +82,7 @@ class Audio2Feature():
         whisper_chunks = []
         whisper_idx_multiplier = 50./fps 
         i = 0
-        print(f"video in {fps} FPS, audio idx in 50FPS")
+        # print(f"video in {fps} FPS, audio idx in 50FPS")
         while 1:
             start_idx = int(i * whisper_idx_multiplier)
             selected_feature,selected_idx = self.get_sliced_feature(feature_array= feature_array,vid_idx = i,audio_feat_length=audio_feat_length,fps=fps)

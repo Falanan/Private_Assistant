@@ -29,7 +29,7 @@ def main(args):
         unet.model = unet.model.half()
     
     inference_config = OmegaConf.load(args.inference_config)
-    print(inference_config)
+    # print(inference_config)
     for task_id in inference_config:
         video_path = inference_config[task_id]["video_path"]
         audio_path = inference_config[task_id]["audio_path"]
@@ -75,7 +75,7 @@ def main(args):
                 coord_list = pickle.load(f)
             frame_list = read_imgs(input_img_list)
         else:
-            print("extracting landmarks...time consuming")
+            # print("extracting landmarks...time consuming")
             coord_list, frame_list = get_landmark_and_bbox(input_img_list, bbox_shift)
             with open(crop_coord_save_path, 'wb') as f:
                 pickle.dump(coord_list, f)
@@ -88,7 +88,7 @@ def main(args):
             x1, y1, x2, y2 = bbox
             crop_frame = frame[y1:y2, x1:x2]
             crop_frame = cv2.resize(crop_frame,(256,256),interpolation = cv2.INTER_LANCZOS4)
-            latents = vae.get_latents_for_unet(crop_frame)
+            latents = vae.get_latents_for_unet(crop_frame) # TODO: delete the output
             input_latent_list.append(latents)
     
         # to smooth the first and the last frame
@@ -96,12 +96,13 @@ def main(args):
         coord_list_cycle = coord_list + coord_list[::-1]
         input_latent_list_cycle = input_latent_list + input_latent_list[::-1]
         ############################################## inference batch by batch ##############################################
-        print("start inference")
+        # print("start inference")
         video_num = len(whisper_chunks)
         batch_size = args.batch_size
         gen = datagen(whisper_chunks,input_latent_list_cycle,batch_size)
         res_frame_list = []
         for i, (whisper_batch,latent_batch) in enumerate(tqdm(gen,total=int(np.ceil(float(video_num)/batch_size)))):
+        # for i, (whisper_batch,latent_batch) in enumerate(gen):
             audio_feature_batch = torch.from_numpy(whisper_batch)
             audio_feature_batch = audio_feature_batch.to(device=unet.device,
                                                          dtype=unet.model.dtype) # torch, B, 5*N,384
@@ -114,8 +115,9 @@ def main(args):
                 res_frame_list.append(res_frame)
                 
         ############################################## pad to full image ##############################################
-        print("pad talking image to original video")
+        # print("pad talking image to original video")
         for i, res_frame in enumerate(tqdm(res_frame_list)):
+        # for i, res_frame in enumerate(res_frame_list):
             bbox = coord_list_cycle[i%(len(coord_list_cycle))]
             ori_frame = copy.deepcopy(frame_list_cycle[i%(len(frame_list_cycle))])
             x1, y1, x2, y2 = bbox
@@ -129,16 +131,29 @@ def main(args):
             cv2.imwrite(f"{result_img_save_path}/{str(i).zfill(8)}.png",combine_frame)
 
         cmd_img2video = f"ffmpeg -y -v warning -r {fps} -f image2 -i {result_img_save_path}/%08d.png -vcodec libx264 -vf format=rgb24,scale=out_color_matrix=bt709,format=yuv420p -crf 18 temp.mp4"
-        print(cmd_img2video)
+        # print(cmd_img2video)
         os.system(cmd_img2video)
         
         cmd_combine_audio = f"ffmpeg -y -v warning -i {audio_path} -i temp.mp4 {output_vid_name}"
-        print(cmd_combine_audio)
+        # print(cmd_combine_audio)
         os.system(cmd_combine_audio)
         
-        # os.remove("temp.mp4")
+        os.remove("temp.mp4")
         shutil.rmtree(result_img_save_path)
-        print(f"result is save to {output_vid_name}")
+        # print(f"result is save to {output_vid_name}")
+
+class InferenceConfig:
+    def __init__(self, inference_config, bbox_shift=0, result_dir='Inference_results/MuseTalk', 
+                 fps=25, batch_size=8, output_vid_name='YaQian_refer.mp4', 
+                 use_saved_coord=False, use_float16=False):
+        self.inference_config = inference_config
+        self.bbox_shift = bbox_shift
+        self.result_dir = result_dir
+        self.fps = fps
+        self.batch_size = batch_size
+        self.output_vid_name = output_vid_name
+        self.use_saved_coord = use_saved_coord
+        self.use_float16 = use_float16
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -158,4 +173,17 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+    # print(args, "-------------------------------------------------------------------------------------------------------------------------")
+    # inference = InferenceConfig(
+    #         inference_config='musetalk\\configs\\inference\\test.yaml',
+    #         bbox_shift=0,
+    #         result_dir='Inference_results/MuseTalk',
+    #         fps=25,
+    #         batch_size=8,
+    #         output_vid_name='YaQian_refer.mp4',
+    #         use_saved_coord=False,
+    #         use_float16=False
+    #     )
+    
     main(args)
+# python musetalk/inference.py --result_dir Inference_results\MuseTalk --output_vid_name YaQian_refer.mp4 --inference_config musetalk\configs\inference\test.yaml

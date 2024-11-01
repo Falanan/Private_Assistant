@@ -13,14 +13,14 @@ class FaceParsing():
         self.preprocess = self.image_preprocess()
 
     def model_init(self, 
-                   resnet_path='musetalk/models/face-parse-bisent/resnet18-5c106cde.pth', 
-                   model_pth='musetalk/models/face-parse-bisent/79999_iter.pth'):
+                   resnet_path='Models_Pretrained/musetalk/face-parse-bisent/resnet18-5c106cde.pth', 
+                   model_pth='Models_Pretrained/musetalk/face-parse-bisent/79999_iter.pth'):
         net = BiSeNet(resnet_path)
         if torch.cuda.is_available():
             net.cuda()
-            net.load_state_dict(torch.load(model_pth)) 
+            net.load_state_dict(torch.load(model_pth, weights_only=True)) 
         else:
-            net.load_state_dict(torch.load(model_pth, map_location=torch.device('cpu')))
+            net.load_state_dict(torch.load(model_pth, map_location=torch.device('cpu'), weights_only=True))
         net.eval()
         return net
 

@@ -15,7 +15,7 @@ from tqdm import tqdm
 # initialize the mmpose model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 config_file = 'musetalk/musetalk/utils/dwpose/rtmpose-l_8xb32-270e_coco-ubody-wholebody-384x288.py'
-checkpoint_file = 'musetalk/models/dwpose/dw-ll_ucoco_384.pth'
+checkpoint_file = 'Models_Pretrained/musetalk/dwpose/dw-ll_ucoco_384.pth'
 model = init_model(config_file, checkpoint_file, device=device)
 
 # initialize the face detection model
@@ -34,8 +34,9 @@ def resize_landmark(landmark, w, h, new_w, new_h):
 
 def read_imgs(img_list):
     frames = []
-    print('reading images...')
-    for img_path in tqdm(img_list):
+    # print('reading images...')
+    # for img_path in tqdm(img_list):
+    for img_path in img_list:
         frame = cv2.imread(img_path)
         frames.append(frame)
     return frames
@@ -94,6 +95,7 @@ def get_landmark_and_bbox(img_list,upperbondrange =0):
     average_range_minus = []
     average_range_plus = []
     for fb in tqdm(batches):
+    # for fb in batches:
         results = inference_topdown(model, np.asarray(fb)[0])
         results = merge_data_samples(results)
         keypoints = results.pred_instances.keypoints
@@ -130,9 +132,9 @@ def get_landmark_and_bbox(img_list,upperbondrange =0):
             else:
                 coords_list += [f_landmark]
     
-    print("********************************************bbox_shift parameter adjustment**********************************************************")
-    print(f"Total frame:「{len(frames)}」 Manually adjust range : [ -{int(sum(average_range_minus) / len(average_range_minus))}~{int(sum(average_range_plus) / len(average_range_plus))} ] , the current value: {upperbondrange}")
-    print("*************************************************************************************************************************************")
+    # print("********************************************bbox_shift parameter adjustment**********************************************************")
+    # print(f"Total frame:「{len(frames)}」 Manually adjust range : [ -{int(sum(average_range_minus) / len(average_range_minus))}~{int(sum(average_range_plus) / len(average_range_plus))} ] , the current value: {upperbondrange}")
+    # print("*************************************************************************************************************************************")
     return coords_list,frames
     
 

@@ -1,21 +1,15 @@
 --extra-index-url https://download.pytorch.org/whl/cu121
-torch==2.4.1 
+torch==2.4.1
 torchvision==0.19.1 
 torchaudio==2.4.1
 
-numpy
-scipy
-scenedetect
-opencv-python
-python_speech_features
-librosa
-matplotlib
-
 diffusers
 accelerate
-tensorflow
-tensorboard
+tensorflow==2.12.0
+tensorboard==2.12.0
+opencv-python
 soundfile
+transformers==4.45.2
 
 gdown
 requests
@@ -23,10 +17,57 @@ imageio[ffmpeg]
 
 omegaconf
 ffmpeg-python
-gradio
 spaces
 moviepy
 
+scipy
+tensorboard
+librosa
+numba
+pytorch-lightning
+gradio>=4.0,<=4.24.0
+onnxruntime; sys_platform == 'darwin'
+onnxruntime-gpu; sys_platform != 'darwin'
+tqdm
+funasr
+cn2an
+pypinyin
+pyopenjtalk
+g2p_en
+modelscope
+sentencepiece
+chardet
+PyYAML
+psutil
+jieba_fast
+jieba
+LangSegment
+Faster_Whisper
+wordsegment
+rotary_embedding_torch
+pyjyutping 
+g2pk2
+ko_pron
+opencc; sys_platform != 'linux'
+opencc==1.1.1; sys_platform == 'linux'
+python_mecab_ko; sys_platform != 'win32'
 
 
-onnxruntime-gpu
+opencv-contrib-python
+opencv-python
+numba
+PyAudio
+
+huggingface-hub==0.25.2
+jinja2
+pydantic
+timm
+tiktoken
+numpy==1.26.4 # Need less than 2.0.0
+sentence_transformers>=3.1.1
+gradio
+openai # openai demo
+einops
+pillow
+sse-starlette
+bitsandbytes
