@@ -190,7 +190,7 @@ def main():
 		video_stream = cv2.VideoCapture(args.face)
 		fps = video_stream.get(cv2.CAP_PROP_FPS)
 
-		# print('Reading video frames...')
+		print('Reading video frames...')
 
 		full_frames = []
 		while 1:

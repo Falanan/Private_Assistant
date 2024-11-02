@@ -172,7 +172,11 @@ if __name__ == "__main__":
                         help="Whether use float16 to speed up inference",
     )
 
+
     args = parser.parse_args()
+
+    main(args)
+
     # print(args, "-------------------------------------------------------------------------------------------------------------------------")
     # inference = InferenceConfig(
     #         inference_config='musetalk\\configs\\inference\\test.yaml',
@@ -185,5 +189,5 @@ if __name__ == "__main__":
     #         use_float16=False
     #     )
     
-    main(args)
+    # main(args)
 # python musetalk/inference.py --result_dir Inference_results\MuseTalk --output_vid_name YaQian_refer.mp4 --inference_config musetalk\configs\inference\test.yaml
