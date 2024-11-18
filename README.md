@@ -163,6 +163,9 @@ Inference Text: 主人你好，请问你需要什么帮助？(English Translatio
   </tr>
 </table >
 
+### GLM-4
+<img src=Inference_results\glm.png  width="95%">
+
 ## Thought on Reinforcement Learning
 Reinforcement Learning is a method that the current output of this moment depends on previous outputs and a reward. This can be implemented on NLP part. For example, we have the records of a Language anchors. The live broadcasts consist of chatting with the chat room. We have the chat room inputs and the anchors responds. This particular person must be chatting according to their personality. So we have all the contents, and we can use these data to train a model that the model is responding you with the particular personality. 
 

@@ -159,7 +159,7 @@ def main():
         nltk.download('averaged_perceptron_tagger_eng')
         # TODO: Load all models works for English
         #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
-        # chatbot = GLMChatbot()
+        chatbot = GLMChatbot()
         
         
         # Change model weights
@@ -169,16 +169,15 @@ def main():
         toggle_output(True)
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
-        toggle_output(False)
 
-        synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = "按英文句号.切")
+        # synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = "按英文句号.切")
         # Generate the voice and lip movement
 
         while True:
             user_input = input("\nYou: ")
             if user_input.lower() in ["exit", "quit"]:
                 break
-            # response = chatbot.generate_response(user_input)
+            response = chatbot.generate_response(user_input)
             print("GLM-4:", response)
 
 
