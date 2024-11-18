@@ -655,8 +655,12 @@ def change_choices():
     return {"choices": sorted(SoVITS_names, key=custom_sort_key), "__type__": "update"}, {"choices": sorted(GPT_names, key=custom_sort_key), "__type__": "update"}
 
 
-SoVITS_weight_root=["Models_Pretrained/SoVITS_weights_v2","Models_Pretrained/SoVITS_weights"]
-GPT_weight_root=["Models_Pretrained/GPT_weights_v2","Models_Pretrained/GPT_weights"]
+# SoVITS_weight_root=["Models_Pretrained/SoVITS_weights_v2","Models_Pretrained/SoVITS_weights"]
+# GPT_weight_root=["Models_Pretrained/GPT_weights_v2","Models_Pretrained/GPT_weights"]
+
+SoVITS_weight_root=["Models_Pretrained/GPT_SoVITS"]
+GPT_weight_root=["Models_Pretrained/GPT_SoVITS"]
+
 for path in SoVITS_weight_root+GPT_weight_root:
     os.makedirs(path,exist_ok=True)
 

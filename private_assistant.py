@@ -26,27 +26,48 @@ def toggle_output(enable=True):
         sys.stderr = open(os.devnull, 'w')
 
 
+
+
 def main():
+    # This is the folder path that temporary store wav file and video file.
+    temp_file_path = "temp"
+    if not os.path.exists(temp_file_path):
+        os.makedirs(temp_file_path)
+        print(f"Folder created: {temp_file_path}")
+
+    models_parent_path = "Models_Pretrained"
+    museTalk_model_path = os.path.join(models_parent_path, "MuseTalk")
+    wav2lip_path = os.path.join(models_parent_path, "Wav2Lip")
+    
+
+
     print("Please select your language:")
     print("1. English")
     print("2. Chinese")
 
-    choice = "0"
+
+
+    language = "en"
+
 
     while True:
         choice = input("Enter your choice (1 or 2): ")
         if choice == "1":
+            language = "en"
             print("You selected English.")
             break
         elif choice == "2":
+            language = "zh"
             print("You selected Chinese.")
             break
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
-    print("User input: ", choice)
 
-    if choice == "1":
+
+
+
+    if language == "en":
         
         toggle_output(False)
         # TODO: Load all models works for English
@@ -59,12 +80,12 @@ def main():
             user_input = input("\nYou: ")
             if user_input.lower() in ["exit", "quit"]:
                 break
-            response = chatbot.generate_response(user_input)
+            # response = chatbot.generate_response(user_input)
             print("GLM-4:", response)
 
 
 
-    elif choice == "2":
+    elif language == "zh":
         toggle_output(False)
         # TODO: Load all models works for Chinese
         #  1. GLM-4 2. GPT-SoVITS 3. MuseTalk
