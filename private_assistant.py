@@ -1,8 +1,13 @@
 import sys
 import os
 import contextlib
+<<<<<<< Updated upstream
 
 # from chatglm.glm4_module import GLMChatbot
+=======
+import re
+from chatglm.glm4_module import GLMChatbot
+>>>>>>> Stashed changes
 
 _stdout_backup = sys.stdout
 _stderr_backup = sys.stderr
@@ -25,6 +30,30 @@ def toggle_output(enable=True):
         sys.stdout = open(os.devnull, 'w')
         sys.stderr = open(os.devnull, 'w')
 
+def clean_text(text):
+    # Replace newline and escaped single quotes
+    cleaned_text = text.replace("\\n", "").replace("\\'", "'").replace("\\t", "")
+    # Optionally, replace multiple spaces with a single space for better formatting
+    cleaned_text = ' '.join(cleaned_text.split())
+    return cleaned_text
+
+def remove_emojis(s):
+    # Emoji Unicode range
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # emoticons
+        "\U0001F300-\U0001F5FF"  # symbols & pictographs
+        "\U0001F680-\U0001F6FF"  # transport & map symbols
+        "\U0001F1E0-\U0001F1FF"  # flags (iOS)
+        "\U00002700-\U000027BF"  # dingbats
+        "\U0001F900-\U0001F9FF"  # Supplemental Symbols and Pictographs
+        "\U0001FA70-\U0001FAFF"  # Symbols and Pictographs Extended-A
+        "\U00002600-\U000026FF"  # Miscellaneous Symbols
+        "\U0001F700-\U0001F77F"  # Alchemical Symbols
+        "]+",
+        flags=re.UNICODE
+    )
+    return emoji_pattern.sub(r'', s)
 
 
 
@@ -118,4 +147,20 @@ def main():
 
 
 if __name__ == "__main__":
+<<<<<<< Updated upstream
     main()
+=======
+    toggle_output(False)
+    chatbot = GLMChatbot()
+
+    # Begin interaction
+    toggle_output(True)
+    print("Welcome to the GLM-4-9B CLI chat. Type your messages below.")
+    while True:
+        user_input = input("\nYou: ")
+        if user_input.lower() in ["exit", "quit"]:
+            break
+        response = chatbot.generate_response(user_input)
+        response = clean_text(remove_emojis(response))
+        print("\nGLM-4:", response)
+>>>>>>> Stashed changes
