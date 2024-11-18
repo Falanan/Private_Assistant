@@ -1,5 +1,7 @@
 
 # python inference_cli.py --gpt_model "E:\GPT-SoVITS-main\GPT-SoVITS-v2-240821\GPT_weights_v2\YQ_V2_V0.2-e15.ckpt" --sovits_model "E:\GPT-SoVITS-main\GPT-SoVITS-v2-240821\SoVITS_weights_v2\YQ_V2_V0.2_e8_s272.pth" --ref_audio "E:\ML_Data_Collection\GPT-SoVITS\YaQian05\TestAU.wav" --ref_text "E:\ML_Data_Collection\GPT-SoVITS\YaQian05\Wav_text.txt" --ref_language 中文 --target_text "E:\ML_Data_Collection\GPT-SoVITS\YaQian05\Test_target.txt" --target_language 中文 --output_path "E:\GPT-SoVITS-main\GPT-SoVITS-v2-240821\output"
+#python gptsovits_core/GPT_SoVITS/inference_cli.py --gpt_model "E:\Private_Assistant\Models_Pretrained\GPT_SoVITS\en\GPT_weights_v2\Yae_Miko_V2_Genshin5.1.ckpt" --sovits_model "E:\Private_Assistant\Models_Pretrained\GPT_SoVITS\en\SoVITS_weights_v2\Yae_Miko_V2_Genshin5.1.pth" --ref_audio "E:\Private_Assistant\References\en\Yae_Miko_V2_Genshin5.1.wav" --ref_text "E:\Private_Assistant\References\en\Yae_Miko_V2_Genshin5.1.txt" --ref_language 英文 --target_text "E:\Private_Assistant\References\en\t.txt" --target_language 英文 --output_path "E:\Private_Assistant\temp"
+
 
 import argparse
 import os

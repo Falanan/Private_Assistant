@@ -28,24 +28,28 @@
 
 import os
 
-def ensure_path_exists(path):
-    """
-    Ensure the folder path exists. If it doesn't, create it.
+# def ensure_path_exists(path):
+#     """
+#     Ensure the folder path exists. If it doesn't, create it.
 
-    Args:
-        path (str): The path to check and create if necessary.
-    """
-    folder_path = os.path.dirname(path) if os.path.isfile(path) else path
+#     Args:
+#         path (str): The path to check and create if necessary.
+#     """
+#     folder_path = os.path.dirname(path) if os.path.isfile(path) else path
 
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-        print(f"Path created: {folder_path}")
-    else:
-        print(f"Path already exists: {folder_path}")
+#     if not os.path.exists(folder_path):
+#         os.makedirs(folder_path)
+#         print(f"Path created: {folder_path}")
+#     else:
+#         print(f"Path already exists: {folder_path}")
 
-# Example usage
-# Provide a folder path
-ensure_path_exists("path/to/folder")
+# # Example usage
+# # Provide a folder path
+# ensure_path_exists("path/to/folder")
 
-# Provide a file path
-ensure_path_exists("path/to/folder/file.txt")
+# # Provide a file path
+# ensure_path_exists("path/to/folder/file.txt")
+
+#Refereneces\en\Yae_Miko_V2_Genshin5.1.txt
+#References\en\Yae_Miko_V2_Genshin5.1.txt
+print(os.path.exists("References\\en\\Yae_Miko_V2_Genshin5.1.txt"))

@@ -2,7 +2,7 @@ import sys
 import os
 import contextlib
 import re
-
+import nltk
 import soundfile as sf
 from chatglm.glm4_module import GLMChatbot
 
@@ -156,9 +156,11 @@ def main():
     if language == "en":
         # Pending all outputs when load models
         toggle_output(False)
+        nltk.download('averaged_perceptron_tagger_eng')
         # TODO: Load all models works for English
         #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
         # chatbot = GLMChatbot()
+        
         
         # Change model weights
         change_gpt_weights(gpt_path=gs_gpt_weight_path)
