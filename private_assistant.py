@@ -5,34 +5,19 @@ import re
 
 import soundfile as sf
 from chatglm.glm4_module import GLMChatbot
+
+
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovits_core")))
+
+# Add additional subdirectories if needed
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovits_core", "GPT_SoVITS")))
 from gptsovits_core.GPT_SoVITS.tools.i18n.i18n import I18nAuto
 from gptsovits_core.GPT_SoVITS.inference_webui import change_gpt_weights, change_sovits_weights, get_tts_wav
 
 
 _stdout_backup = sys.stdout
 _stderr_backup = sys.stderr
-i18n = I18nAuto()
-
-# GPT_SoVITS inference
-def synthesize(ref_audio_path, ref_text_path, ref_language, target_text, target_language, output_path, how_to_cut=i18n("不切")):
-    with open(ref_text_path, 'r', encoding='utf-8') as file:
-            ref_text = file.read()
-    # Synthesize audio
-    synthesis_result = get_tts_wav(ref_wav_path=ref_audio_path, 
-                                   prompt_text=ref_text, 
-                                   prompt_language=i18n(ref_language), 
-                                   text=target_text, 
-                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=i18n("不切"))
-    
-    result_list = list(synthesis_result)
-
-    if result_list:
-        last_sampling_rate, last_audio_data = result_list[-1]
-        output_wav_path = os.path.join(output_path, "output.wav")
-        sf.write(output_wav_path, last_audio_data, last_sampling_rate)
-        print(f"Audio saved to {output_wav_path}")
-
-
 
 
 def toggle_output(enable=True):
@@ -58,7 +43,6 @@ def clean_text(text):
     # Optionally, replace multiple spaces with a single space for better formatting
     cleaned_text = ' '.join(cleaned_text.split())
     return cleaned_text
-
 
 def remove_emojis(s):
     # Emoji Unicode range
@@ -87,86 +71,49 @@ def main():
         os.makedirs(temp_file_path)
         print(f"Folder created: {temp_file_path}")
 
-    # These are models paths
     models_parent_path = "Models_Pretrained"
     museTalk_model_path = os.path.join(models_parent_path, "MuseTalk")
     wav2lip_path = os.path.join(models_parent_path, "Wav2Lip", "wav2lip_gan.pth")
     gs_sovits_weight_path =  os.path.join(models_parent_path, "GPT_SoVITS")
     gs_gpt_weight_path = os.path.join(models_parent_path, "GPT_SoVITS")
-    reference_avatar_path = os.path.join("References")
-    reference_audio_path = os.path.join("References")
-    reference_text_path = os.path.join("References")
 
     print("Please select your language:")
     print("1. English")
     print("2. Chinese")
+
     language = "en"
 
-    # Get Language preference
+
     while True:
         choice = input("Enter your choice (1 or 2): ")
         if choice == "1":
             language = "en"
             gs_sovits_weight_path = os.path.join(gs_sovits_weight_path, "en", "SoVITS_weights_v2")
             gs_gpt_weight_path = os.path.join(gs_gpt_weight_path, "en", "GPT_weights_v2")
-            reference_avatar_path = os.path.join(reference_avatar_path, "en")
-            reference_audio_path = os.path.join(reference_audio_path, "en")
-            reference_text_path = os.path.join(reference_text_path, "en")
             print("You selected English.")
             break
         elif choice == "2":
             language = "zh"
             gs_sovits_weight_path = os.path.join(gs_sovits_weight_path, "zh", "SoVITS_weights_v2")
             gs_gpt_weight_path = os.path.join(gs_gpt_weight_path, "zh", "GPT_weights_v2")
-            reference_avatar_path = os.path.join(reference_avatar_path, "zh")
-            reference_audio_path = os.path.join(reference_audio_path, "zh")
-            reference_text_path = os.path.join(reference_text_path, "zh")
             print("You selected Chinese.")
             break
         else:
             print("Invalid choice. Please enter 1 or 2.")
 
-    # Get model selection and update models path
-    while True:
-        with os.scandir(gs_sovits_weight_path) as entries:
-            models_list = [entry.name for entry in entries if entry.is_file()]
-        for k in range(1, len(models_list)+1):
-            print(str(k)+":", models_list[k-1])
-        choice = int(input("Enter your choice: "))
-        if int(choice) <= len(models_list):
-            model_name = models_list[choice-1].split('.pth')
-            gs_sovits_weight_path = os.path.join(gs_sovits_weight_path, model_name[0] + ".pth")
-            gs_gpt_weight_path = os.path.join(gs_gpt_weight_path, model_name[0] + ".ckpt")
-            reference_avatar_path = os.path.join(reference_avatar_path, model_name[0] + ".png")
-            reference_audio_path = os.path.join(reference_audio_path, model_name[0] + ".wav")
-            reference_text_path = os.path.join(reference_text_path, model_name[0] + ".txt")
 
-            print("You selected", model_name,"model")
-            break
-        else:
-            print("Invalid choice. Please enter again")
 
 
 
     if language == "en":
-        # Pending all outputs when load models
+        
         toggle_output(False)
         # TODO: Load all models works for English
         #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
-        # chatbot = GLMChatbot()
-        
-        # Change model weights
-        change_gpt_weights(gpt_path=gs_gpt_weight_path)
-        change_sovits_weights(sovits_path=gs_sovits_weight_path)
-        
         toggle_output(True)
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
-        toggle_output(False)
-
-        synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = "按英文句号.切")
         # Generate the voice and lip movement
-
         while True:
             user_input = input("\nYou: ")
             if user_input.lower() in ["exit", "quit"]:

@@ -79,18 +79,18 @@ import gradio as gr
 from transformers import AutoModelForMaskedLM, AutoTokenizer
 import numpy as np
 import librosa
-from .feature_extractor import cnhubert
+from feature_extractor import cnhubert
 
 cnhubert.cnhubert_base_path = cnhubert_base_path
 
-from .module.models import SynthesizerTrn
-from .AR.models.t2s_lightning_module import Text2SemanticLightningModule
-from .text import cleaned_text_to_sequence
-from .text.cleaner import clean_text
+from module.models import SynthesizerTrn
+from AR.models.t2s_lightning_module import Text2SemanticLightningModule
+from text import cleaned_text_to_sequence
+from text.cleaner import clean_text
 from time import time as ttime
-from .module.mel_processing import spectrogram_torch
-from .tools.my_utils import load_audio
-from .tools.i18n.i18n import I18nAuto, scan_language_list
+from module.mel_processing import spectrogram_torch
+from tools.my_utils import load_audio
+from tools.i18n.i18n import I18nAuto, scan_language_list
 
 language=os.environ.get("language","Auto")
 language=sys.argv[-1] if sys.argv[-1] in scan_language_list() else language
