@@ -1,13 +1,9 @@
 import sys
 import os
 import contextlib
-<<<<<<< Updated upstream
+import re
 
 # from chatglm.glm4_module import GLMChatbot
-=======
-import re
-from chatglm.glm4_module import GLMChatbot
->>>>>>> Stashed changes
 
 _stdout_backup = sys.stdout
 _stderr_backup = sys.stderr
@@ -66,15 +62,13 @@ def main():
 
     models_parent_path = "Models_Pretrained"
     museTalk_model_path = os.path.join(models_parent_path, "MuseTalk")
-    wav2lip_path = os.path.join(models_parent_path, "Wav2Lip")
-    
-
+    wav2lip_path = os.path.join(models_parent_path, "Wav2Lip", "wav2lip_gan.pth")
+    gs_sovits_weight_path =  os.path.join(models_parent_path, "GPT_SoVITS")
+    gs_gpt_weight_path = os.path.join(models_parent_path, "GPT_SoVITS")
 
     print("Please select your language:")
     print("1. English")
     print("2. Chinese")
-
-
 
     language = "en"
 
@@ -83,10 +77,14 @@ def main():
         choice = input("Enter your choice (1 or 2): ")
         if choice == "1":
             language = "en"
+            gs_sovits_weight_path = os.path.join(gs_sovits_weight_path, "en", "SoVITS_weights_v2")
+            gs_gpt_weight_path = os.path.join(gs_gpt_weight_path, "en", "GPT_weights_v2")
             print("You selected English.")
             break
         elif choice == "2":
             language = "zh"
+            gs_sovits_weight_path = os.path.join(gs_sovits_weight_path, "zh", "SoVITS_weights_v2")
+            gs_gpt_weight_path = os.path.join(gs_gpt_weight_path, "zh", "GPT_weights_v2")
             print("You selected Chinese.")
             break
         else:
@@ -147,20 +145,4 @@ def main():
 
 
 if __name__ == "__main__":
-<<<<<<< Updated upstream
     main()
-=======
-    toggle_output(False)
-    chatbot = GLMChatbot()
-
-    # Begin interaction
-    toggle_output(True)
-    print("Welcome to the GLM-4-9B CLI chat. Type your messages below.")
-    while True:
-        user_input = input("\nYou: ")
-        if user_input.lower() in ["exit", "quit"]:
-            break
-        response = chatbot.generate_response(user_input)
-        response = clean_text(remove_emojis(response))
-        print("\nGLM-4:", response)
->>>>>>> Stashed changes
