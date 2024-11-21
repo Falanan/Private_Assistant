@@ -27,7 +27,7 @@ def synthesize(ref_audio_path, ref_text_path, ref_language, target_text, target_
                                    prompt_text=ref_text, 
                                    prompt_language=i18n(ref_language), 
                                    text=target_text, 
-                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=i18n("不切"))
+                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut = how_to_cut)
     
     result_list = list(synthesis_result)
 
@@ -57,13 +57,6 @@ def toggle_output(enable=True):
         sys.stdout = open(os.devnull, 'w')
         sys.stderr = open(os.devnull, 'w')
 
-def clean_text(text):
-    # Replace newline and escaped single quotes
-    cleaned_text = text.replace("\\n", "").replace("\\'", "'").replace("\\t", "")
-    # Optionally, replace multiple spaces with a single space for better formatting
-    cleaned_text = ' '.join(cleaned_text.split())
-    return cleaned_text
-
 
 def remove_emojis(s):
     # Emoji Unicode range
@@ -83,6 +76,14 @@ def remove_emojis(s):
     )
     return emoji_pattern.sub(r'', s)
 
+
+def clean_text(text):
+    no_emojy_text = remove_emojis(text)
+    # Replace newline and escaped single quotes
+    cleaned_text = no_emojy_text.replace("\\n", "").replace("\\'", "'").replace("\\t", "")
+    # Optionally, replace multiple spaces with a single space for better formatting
+    cleaned_text = ' '.join(cleaned_text.split())
+    return cleaned_text
 
 
 def main():
@@ -170,7 +171,7 @@ def main():
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
 
-        # synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = "按英文句号.切")
+        synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
         # Generate the voice and lip movement
 
         while True:
@@ -178,6 +179,9 @@ def main():
             if user_input.lower() in ["exit", "quit"]:
                 break
             response = chatbot.generate_response(user_input)
+            toggle_output(False)
+            synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+            toggle_output(True)
             print("GLM-4:", response)
 
 

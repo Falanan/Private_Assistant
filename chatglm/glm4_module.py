@@ -133,7 +133,7 @@ class GLMChatbot:
         for new_token in streamer:
             if new_token:
                 response += new_token
-                print(new_token, end="", flush=True) ## Fix it later
+                # print(new_token, end="", flush=True) ## Fix it later
                 self.history[-1][1] += new_token
 
         self.history[-1][1] = self.history[-1][1].strip()
