@@ -19,17 +19,15 @@ _stderr_backup = sys.stderr
 i18n = I18nAuto()
 
 # GPT_SoVITS inference
-def synthesize(GPT_model_path, SoVITS_model_path, ref_audio_path, ref_text_path, ref_language, target_text, target_language, output_path, how_to_cut=i18n("不切")):
+def synthesize(ref_audio_path, ref_text_path, ref_language, target_text, target_language, output_path, how_to_cut=i18n("不切")):
     with open(ref_text_path, 'r', encoding='utf-8') as file:
             ref_text = file.read()
     # Synthesize audio
-    change_gpt_weights(gpt_path=GPT_model_path)
-    change_sovits_weights(sovits_path=SoVITS_model_path)
     synthesis_result = get_tts_wav(ref_wav_path=ref_audio_path, 
                                    prompt_text=ref_text, 
                                    prompt_language=i18n(ref_language), 
                                    text=target_text, 
-                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=how_to_cut)
+                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=i18n("不切"))
     
     result_list = list(synthesis_result)
 
@@ -59,6 +57,13 @@ def toggle_output(enable=True):
         sys.stdout = open(os.devnull, 'w')
         sys.stderr = open(os.devnull, 'w')
 
+def clean_text(text):
+    # Replace newline and escaped single quotes
+    cleaned_text = text.replace("\\n", "").replace("\\'", "'").replace("\\t", "")
+    # Optionally, replace multiple spaces with a single space for better formatting
+    cleaned_text = ' '.join(cleaned_text.split())
+    return cleaned_text
+
 
 def remove_emojis(s):
     # Emoji Unicode range
@@ -77,14 +82,6 @@ def remove_emojis(s):
         flags=re.UNICODE
     )
     return emoji_pattern.sub(r'', s)
-
-def clean_text(text):
-    no_emojy_text = remove_emojis(text)
-    # Replace newline and escaped single quotes
-    cleaned_text = no_emojy_text.replace("\\n", "").replace("\\'", "'").replace("\\t", "")
-    # Optionally, replace multiple spaces with a single space for better formatting
-    cleaned_text = ' '.join(cleaned_text.split())
-    return cleaned_text
 
 
 
@@ -149,7 +146,7 @@ def main():
             reference_audio_path = os.path.join(reference_audio_path, model_name[0] + ".wav")
             reference_text_path = os.path.join(reference_text_path, model_name[0] + ".txt")
 
-            print("You selected", model_name[choice-1],"model")
+            print("You selected", model_name,"model")
             break
         else:
             print("Invalid choice. Please enter again")
@@ -159,12 +156,13 @@ def main():
     if language == "en":
         # Pending all outputs when load models
         toggle_output(False)
-
-        # nltk.download('averaged_perceptron_tagger_eng')
+        nltk.download('averaged_perceptron_tagger_eng')
         # TODO: Load all models works for English
         #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
         chatbot = GLMChatbot()
-        # Change GPT-SoVITS model weights
+        
+        
+        # Change model weights
         change_gpt_weights(gpt_path=gs_gpt_weight_path)
         change_sovits_weights(sovits_path=gs_sovits_weight_path)
         
@@ -172,9 +170,7 @@ def main():
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
 
-        toggle_output(False)
-        synthesize(gs_gpt_weight_path ,gs_sovits_weight_path, reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
-        toggle_output(True)
+        # synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = "按英文句号.切")
         # Generate the voice and lip movement
 
         while True:
@@ -182,9 +178,6 @@ def main():
             if user_input.lower() in ["exit", "quit"]:
                 break
             response = chatbot.generate_response(user_input)
-            toggle_output(False)
-            synthesize(gs_gpt_weight_path ,gs_sovits_weight_path, reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
-            toggle_output(True)
             print("GLM-4:", response)
 
 

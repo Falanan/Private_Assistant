@@ -19,4 +19,3 @@ GPT_SoVITS/text/G2PWModel/g2pW.onnx
 *.ckpt
 /gptsovit_core/GPT_SoVITS/text/G2PWModel
 /Models_Pretrained/musetalk
-/temp
