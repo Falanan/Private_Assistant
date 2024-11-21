@@ -30,7 +30,7 @@ def synthesize(GPT_model_path, SoVITS_model_path, ref_audio_path, ref_text_path,
                                    prompt_text=ref_text, 
                                    prompt_language=i18n(ref_language), 
                                    text=target_text, 
-                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=i18n("不切"))
+                                   text_language=i18n(target_language), top_p=1, temperature=1, how_to_cut=i18n("按英文句号.切"))
     
     result_list = list(synthesis_result)
 
