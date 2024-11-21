@@ -12,7 +12,8 @@ from inference_webui import change_gpt_weights, change_sovits_weights, get_tts_w
 
 i18n = I18nAuto()
 
-def synthesize(GPT_model_path, SoVITS_model_path, ref_audio_path, ref_text_path, ref_language, target_text_path, target_language, output_path, how_to_cut=i18n("不切")):
+# def synthesize(GPT_model_path, SoVITS_model_path, ref_audio_path, ref_text_path, ref_language, target_text_path, target_language, output_path, how_to_cut=i18n("不切")):
+def synthesize(GPT_model_path, SoVITS_model_path, ref_audio_path, ref_text_path, ref_language, target_text_path, target_language, output_path, how_to_cut=i18n("按英文句号.切")):
     # Read reference text
     with open(ref_text_path, 'r', encoding='utf-8') as file:
         ref_text = file.read()
