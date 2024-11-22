@@ -129,7 +129,7 @@ class GLMChatbot:
         t = Thread(target=self.model.generate, kwargs=generate_kwargs)
         t.start()
         response = ""
-        print("GLM-4:", end="", flush=True)
+        # print("GLM-4:", end="", flush=True)
         for new_token in streamer:
             if new_token:
                 response += new_token

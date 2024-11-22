@@ -17,6 +17,7 @@ from gptsovits_core.GPT_SoVITS.inference_webui import change_gpt_weights, change
 _stdout_backup = sys.stdout
 _stderr_backup = sys.stderr
 i18n = I18nAuto()
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = "0"
 
 # GPT_SoVITS inference
 def synthesize(ref_audio_path, ref_text_path, ref_language, target_text, target_language, output_path, how_to_cut=i18n("不切")):
@@ -147,7 +148,7 @@ def main():
             reference_audio_path = os.path.join(reference_audio_path, model_name[0] + ".wav")
             reference_text_path = os.path.join(reference_text_path, model_name[0] + ".txt")
 
-            print("You selected", model_name,"model")
+            print("You selected", model_name[choice-1],"model")
             break
         else:
             print("Invalid choice. Please enter again")
@@ -157,7 +158,7 @@ def main():
     if language == "en":
         # Pending all outputs when load models
         toggle_output(False)
-        nltk.download('averaged_perceptron_tagger_eng')
+        # nltk.download('averaged_perceptron_tagger_eng')
         # TODO: Load all models works for English
         #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
         chatbot = GLMChatbot()
@@ -170,8 +171,9 @@ def main():
         toggle_output(True)
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
-
+        toggle_output(False)
         synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+        toggle_output(True)
         # Generate the voice and lip movement
 
         while True:
