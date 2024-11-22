@@ -94,6 +94,8 @@ Training a model on LRS2 dataset from scratch takes really a long time and requi
 
 ## Installation
 
+install K-Lite Codec Pack
+
 Note: Only PyTorch 2.1.2/2.0.1/2.4.1 works for MuseTalk required openmim libraries. I do recommend to use version 2.1.2. Since 2.4.1 keep printing out warning information that requires you to update the load model function, while open-mmlab still not update their models till Nov/01/2024. And I've put all the requirements into ```requirements.txt``` file. So you can simply run the following command in your termial to install all requirements:
 
 ``` pip install -r requirements.txt```
