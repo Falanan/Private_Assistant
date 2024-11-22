@@ -25,7 +25,7 @@ class Wav2LipInference:
 
     def preprocess_audio(self):
         if not self.config.audio.endswith('.wav'):
-            command = f'ffmpeg -y -i {self.config.audio} -strict -2 wav2lip_core/temp/temp.wav'
+            command = f'ffmpeg -y -loglevel quiet -i {self.config.audio} -strict -2 wav2lip_core/temp/temp.wav'
             subprocess.call(command, shell=True)
             self.config.audio = 'wav2lip_core/temp/temp.wav'
 
@@ -188,7 +188,7 @@ class Wav2LipInference:
         del detector
         return results 
     def combine_audio(self):
-        command = f'ffmpeg -y -i {self.config.audio} -i wav2lip_core/temp/result.avi {self.config.outfile}'
+        command = f'ffmpeg -y -loglevel quiet -i {self.config.audio} -i wav2lip_core/temp/result.avi {self.config.outfile}'
         subprocess.call(command, shell=True)
 
 class InferenceConfig:

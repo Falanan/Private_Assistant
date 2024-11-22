@@ -12,6 +12,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovi
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovits_core", "GPT_SoVITS")))
 from gptsovits_core.GPT_SoVITS.tools.i18n.i18n import I18nAuto
 from gptsovits_core.GPT_SoVITS.inference_webui import change_gpt_weights, change_sovits_weights, get_tts_wav
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "wav2lip_core")))
+from wav2lip_core.wav2lip_module import Wav2LipInference, InferenceConfig
 
 
 _stdout_backup = sys.stdout
@@ -34,7 +36,7 @@ def synthesize(ref_audio_path, ref_text_path, ref_language, target_text, target_
 
     if result_list:
         last_sampling_rate, last_audio_data = result_list[-1]
-        output_wav_path = os.path.join(output_path, "output.wav")
+        output_wav_path = os.path.join(output_path, "t2s_output.wav")
         sf.write(output_wav_path, last_audio_data, last_sampling_rate)
         print(f"Audio saved to {output_wav_path}")
 
@@ -88,6 +90,9 @@ def clean_text(text):
 
 
 def main():
+
+
+
     # This is the folder path that temporary store wav file and video file.
     temp_file_path = "temp"
     if not os.path.exists(temp_file_path):
@@ -159,20 +164,32 @@ def main():
         # Pending all outputs when load models
         toggle_output(False)
         # nltk.download('averaged_perceptron_tagger_eng')
-        # TODO: Load all models works for English
-        #  1. GLM-4 2. GPT-SoVITS 3. Wav2Lip
+
+        #  Initilize GLM-4 model
         chatbot = GLMChatbot()
-        
-        
-        # Change model weights
+
+        # Initilize GPT-SoVITS model
         change_gpt_weights(gpt_path=gs_gpt_weight_path)
         change_sovits_weights(sovits_path=gs_sovits_weight_path)
+
+        # Initilize Wav2Lip model
+        wav2lip_config = InferenceConfig(
+            checkpoint_path=wav2lip_path,
+            face=reference_avatar_path,
+            audio="temp/t2s_output.wav",
+            outfile="temp/synced_video.mp4",
+            resize_factor=1
+        )
+
+        wav2lip_inference = Wav2LipInference(wav2lip_config)
+
         
         toggle_output(True)
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
         response = "Hello master, I am your command line private assistant. What can I do for you today?"
         toggle_output(False)
         synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+        wav2lip_inference.run_inference()
         toggle_output(True)
         # Generate the voice and lip movement
 
@@ -183,6 +200,7 @@ def main():
             response = chatbot.generate_response(user_input)
             toggle_output(False)
             synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+            wav2lip_inference.run_inference()
             toggle_output(True)
             print("GLM-4:", response)
 
