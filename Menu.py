@@ -192,7 +192,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Video Player and Dialogue Box")
-        self.resize(1024, 768)
+        self.resize(800, 1600)
 
         # Main layout
         main_layout = QVBoxLayout()
@@ -242,7 +242,8 @@ class MainWindow(QMainWindow):
     def update_video_size(self):
         """Update the video size to fit the graphics view."""
         size = self.graphics_view.size()
-        self.video_item.setSize(QSizeF(size.width(), size.height()))
+        # self.video_item.setSize(QSizeF(size.width(), size.height()))
+        self.video_item.setSize(QSizeF(500, 800))
 
     def load_video(self, video_path):
         """Load and play video from the given path."""
@@ -268,6 +269,7 @@ if __name__ == "__main__":
 
     # Example usage:
     window.load_video("temp/synced_video.mp4")
-    window.append_dialogue("Hello, how are you?\n\nHoooo")
+    for i in range(0,10):
+        window.append_dialogue("Hello, how are you?\n\nHoooo")
 
     sys.exit(app.exec_())
