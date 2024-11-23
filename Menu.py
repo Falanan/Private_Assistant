@@ -192,7 +192,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Video Player and Dialogue Box")
-        self.resize(800, 1600)
+        self.resize(800, 600)
 
         # Main layout
         main_layout = QVBoxLayout()
@@ -208,13 +208,22 @@ class MainWindow(QMainWindow):
         self.dialogue_box = QTextBrowser()
         main_layout.addWidget(self.dialogue_box)
 
-        # User Input and Submit Button
-        input_layout = QHBoxLayout()
+        # User Input and Control Buttons
+        control_layout = QHBoxLayout()
+
+        # User Input
         self.user_input = QLineEdit()
+        control_layout.addWidget(self.user_input)
+
+        # Submit Button
         self.submit_button = QPushButton("Submit")
-        input_layout.addWidget(self.user_input)
-        input_layout.addWidget(self.submit_button)
-        main_layout.addLayout(input_layout)
+        control_layout.addWidget(self.submit_button)
+
+        # Pause/Play Button
+        self.pause_play_button = QPushButton("Pause")
+        control_layout.addWidget(self.pause_play_button)
+
+        main_layout.addLayout(control_layout)
 
         # Central widget
         central_widget = QWidget()
@@ -224,31 +233,32 @@ class MainWindow(QMainWindow):
         # Media Player
         self.media_player = QMediaPlayer()
         self.media_player.setVideoOutput(self.video_item)
-        self.stop_button = QPushButton("Stop Video")
-        main_layout.addWidget(self.stop_button)
-        self.stop_button.clicked.connect(self.media_player.stop)
 
         # Set the initial size of the video item
-        self.update_video_size()
+        self.set_video_size(640, 360)
 
-        # Connect submit button
+        # Connect buttons
         self.submit_button.clicked.connect(self.get_user_input)
+        self.pause_play_button.clicked.connect(self.toggle_pause_play)
 
-    def resizeEvent(self, event):
-        """Handle window resize and adjust video size."""
-        super().resizeEvent(event)
-        self.update_video_size()
-
-    def update_video_size(self):
-        """Update the video size to fit the graphics view."""
-        size = self.graphics_view.size()
-        # self.video_item.setSize(QSizeF(size.width(), size.height()))
-        self.video_item.setSize(QSizeF(500, 800))
+    def set_video_size(self, width, height):
+        """Set the video size manually."""
+        self.video_item.setSize(QSizeF(width, height))
 
     def load_video(self, video_path):
         """Load and play video from the given path."""
         self.media_player.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))
         self.media_player.play()
+        self.pause_play_button.setText("Pause")  # Reset button text
+
+    def toggle_pause_play(self):
+        """Toggle between playing and pausing the video."""
+        if self.media_player.state() == QMediaPlayer.PlayingState:
+            self.media_player.pause()
+            self.pause_play_button.setText("Play")
+        else:
+            self.media_player.play()
+            self.pause_play_button.setText("Pause")
 
     def append_dialogue(self, text):
         """Append text to the dialogue box."""
@@ -269,7 +279,6 @@ if __name__ == "__main__":
 
     # Example usage:
     window.load_video("temp/synced_video.mp4")
-    for i in range(0,10):
-        window.append_dialogue("Hello, how are you?\n\nHoooo")
+    window.append_dialogue("Hello, how are you?")
 
     sys.exit(app.exec_())

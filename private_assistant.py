@@ -5,6 +5,8 @@ import re
 import nltk
 import soundfile as sf
 from chatglm.glm4_module import GLMChatbot
+from pyqt_gui import MainWindow
+from PyQt5.QtWidgets import QApplication
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovits_core")))
@@ -186,22 +188,30 @@ def main():
         
         toggle_output(True)
         print("Hello master, I am your command line private assistant powered by GLM4, GPT-SoVITS and Wav2Lip. What can I do for you today?")
-        response = "Hello master, I am your command line private assistant. What can I do for you today?"
+        response = "Hello master, I am your private assistant. What can I do for you today?"
         toggle_output(False)
         synthesize(reference_audio_path, reference_text_path, "英文", response, "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
         wav2lip_inference.run_inference()
         toggle_output(True)
-        # Generate the voice and lip movement
+
+        # Launch GUI
+        app = QApplication(sys.argv)
+        window = MainWindow()
+        window.show()
+        window.load_video("temp/synced_video.mp4")
+        window.append_dialogue(response)
 
         while True:
             user_input = input("\nYou: ")
             if user_input.lower() in ["exit", "quit"]:
                 break
             response = chatbot.generate_response(user_input)
-            toggle_output(False)
+            # toggle_output(False)
             synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
             wav2lip_inference.run_inference()
-            toggle_output(True)
+            window.load_video("temp/synced_video.mp4")
+            window.append_dialogue(response)
+            # toggle_output(True)
             print("GLM-4:", response)
 
 
@@ -215,27 +225,7 @@ def main():
         response = "主人您好，我是您的的私人助理。请问今天我有什么可以帮到你"
         # Generate the voice and lip movement
 
-
-
-
-
-
-
-
-
-    # toggle_output(False)
-    # chatbot = GLMChatbot()
-
-    # # Begin interaction
-    # toggle_output(True)
-    # print("Welcome to the GLM-4-9B CLI chat. Type your messages below.")
-    # while True:
-    #     user_input = input("\nYou: ")
-    #     if user_input.lower() in ["exit", "quit"]:
-    #         break
-    #     response = chatbot.generate_response(user_input)
-    #     print("GLM-4:", response)
-
+    sys.exit(app.exec_())
 
 
 if __name__ == "__main__":
