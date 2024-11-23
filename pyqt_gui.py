@@ -94,6 +94,7 @@ class MainWindow(QMainWindow):
         # Connect media player signals
         self.media_player.durationChanged.connect(self.update_slider_range)
         self.media_player.positionChanged.connect(self.update_slider_position)
+        self.media_player.stateChanged.connect(self.handle_state_change)
 
     def toggle_pause_play(self):
         """Toggle between playing and pausing the video."""
@@ -117,8 +118,11 @@ class MainWindow(QMainWindow):
 
     def load_video(self, video_path):
         """Load and play video from the given path."""
-        self.media_player.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))
+        self.media_player.stop()  # Stop the current video
+        self.media_player.setMedia(QMediaContent())  # Clear the media to force a reload
+        self.media_player.setMedia(QMediaContent(QUrl.fromLocalFile(video_path)))  # Set new media
         self.media_player.play()
+        self.pause_play_button.setText("Pause")  # Reset button text
 
     def append_dialogue(self, text):
         """Append text to the dialogue box."""
@@ -146,6 +150,13 @@ class MainWindow(QMainWindow):
         """Seek the video to the specified position when the slider is moved."""
         self.media_player.setPosition(position)
 
+    def handle_state_change(self, state):
+        """Handle changes in the media player's state."""
+        if state == QMediaPlayer.StoppedState:
+            self.pause_play_button.setText("Play")  # Update button to "Play" when video finishes
+            self.media_player.play()
+            self.media_player.pause()
+
     def update_time_label(self, current_position, total_duration):
         """Update the time label with the current and total time."""
         current_time = self.format_time(current_position)
@@ -162,6 +173,7 @@ class MainWindow(QMainWindow):
     
     def emit_user_input(self):
         """Emit the user input via the custom signal."""
+        self.submit_button.setEnabled(False)
         user_text = self.user_input.text()
         self.user_input_signal.emit(user_text)  # Emit the input
         self.user_input.clear()  # Clear the input field
@@ -178,7 +190,7 @@ if __name__ == "__main__":
         return text
 
     window.user_input_signal.connect(handle_user_input)
-    
+
     window.show()
 
     # Example usage:

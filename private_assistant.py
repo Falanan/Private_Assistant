@@ -3,6 +3,7 @@ import os
 import contextlib
 import re
 import nltk
+import time
 import soundfile as sf
 from chatglm.glm4_module import GLMChatbot
 from pyqt_gui import MainWindow
@@ -199,20 +200,46 @@ def main():
         window = MainWindow()
         window.show()
         window.load_video("temp/synced_video.mp4")
-        window.append_dialogue(response)
+        window.append_dialogue("Assistant: " + response + "\n")
 
-        while True:
-            user_input = input("\nYou: ")
-            if user_input.lower() in ["exit", "quit"]:
-                break
-            response = chatbot.generate_response(user_input)
-            # toggle_output(False)
-            synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
-            wav2lip_inference.run_inference()
-            window.load_video("temp/synced_video.mp4")
-            window.append_dialogue(response)
-            # toggle_output(True)
-            print("GLM-4:", response)
+        # user_input = ""
+        def handle_user_input(user_input_text):
+            # nonlocal user_input  # Declare nonlocal to modify the variable
+            # user_input = user_input_text  # Assign user input to the variable
+            if user_input_text.lower() in ["exit", "quit"]:
+            # if user_input.lower() in ["exit", "quit"]:
+                print("Exiting...")
+                app.quit()
+            elif user_input_text != "":
+                # window.submit_button.setEnabled(False)
+                window.append_dialogue("You: " + user_input_text + "\n")
+                time.sleep(2)
+                response = chatbot.generate_response(user_input_text)
+                synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+                wav2lip_inference.run_inference()
+                window.load_video("temp/synced_video.mp4")
+                window.append_dialogue("Assistant: " + response + "\n")
+                window.submit_button.setEnabled(True)
+            else:
+                window.submit_button.setEnabled(True)
+
+        window.user_input_signal.connect(handle_user_input)
+
+
+
+
+        # while True:
+        #     user_input = input("\nYou: ")
+        #     if user_input.lower() in ["exit", "quit"]:
+        #         break
+        #     response = chatbot.generate_response(user_input)
+        #     # toggle_output(False)
+        #     synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+        #     wav2lip_inference.run_inference()
+        #     # window.load_video("temp/synced_video.mp4")
+        #     # window.append_dialogue(response)
+        #     # toggle_output(True)
+        #     print("GLM-4:", response)
 
 
 
