@@ -182,12 +182,44 @@ Auto downloaded when first time running the program.
 
 File path:
 ### GPT-SoVITS
-TODO:
+Download the pretrained models on [Hugging face](https://huggingface.co/Falanan/Private_Assistant_Models). Then put the entire folder under Models_Pretrained folder.
 
 ### Wav2Lip
-TODO:
+Download wav2lip_gan model provided [Wav2Lip](https://iiitaphyd-my.sharepoint.com/:u:/g/personal/radrabha_m_research_iiit_ac_in/EdjI7bZlgApMqsVoEUUXpLsBxqXbn5z8VTmoxp55YNDcIA?e=n9ljGW) project. Put the downloaded file under Models_Pertrained/wav2lip folder.
 
 ### MuseTalk
-TODO:
+I personally recommend follow the official link to the website. Here is the link: [MuseTalk models preparation instruction](https://github.com/TMElyralab/MuseTalk?tab=readme-ov-file#download-weights)
+
+Here is the copy:
+#### Download weights
+You can download weights manually as follows:
+
+1. Download our trained [weights](https://huggingface.co/TMElyralab/MuseTalk).
+
+2. Download the weights of other components:
+   - [sd-vae-ft-mse](https://huggingface.co/stabilityai/sd-vae-ft-mse)
+   - [whisper](https://openaipublic.azureedge.net/main/whisper/models/65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9/tiny.pt)
+   - [dwpose](https://huggingface.co/yzd-v/DWPose/tree/main)
+   - [face-parse-bisent](https://github.com/zllrunning/face-parsing.PyTorch)
+   - [resnet18](https://download.pytorch.org/models/resnet18-5c106cde.pth)
+
+
+Finally, these weights should be organized in `models` as follows:
+```
+Models_Pertrained
+├── musetalk
+│   └── musetalk.json
+│   └── pytorch_model.bin
+├── dwpose
+│   └── dw-ll_ucoco_384.pth
+├── face-parse-bisent
+│   ├── 79999_iter.pth
+│   └── resnet18-5c106cde.pth
+├── sd-vae-ft-mse
+│   ├── config.json
+│   └── diffusion_pytorch_model.bin
+└── whisper
+    └── tiny.pt
+```
 
 
