@@ -302,7 +302,7 @@ def get_first(text):
     pattern = "[" + "".join(re.escape(sep) for sep in splits) + "]"
     text = re.split(pattern, text)[0].strip()
     return text
-
+# TODO: Debug
 from text import chinese
 def get_phones_and_bert(text,language,version,final=False):
     if language in {"en", "all_zh", "all_ja", "all_ko", "all_yue"}:
@@ -469,6 +469,7 @@ def get_tts_wav(ref_wav_path, prompt_text, prompt_language, text, text_language,
     texts = merge_short_text_in_array(texts, 5)
     audio_opt = []
     if not ref_free:
+        # TODO: Debug  
         phones1,bert1,norm_text1=get_phones_and_bert(prompt_text, prompt_language, version)
 
     for i_text,text in enumerate(texts):

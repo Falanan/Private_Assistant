@@ -13,7 +13,7 @@ from musetalk.utils.preprocessing import get_landmark_and_bbox, read_imgs, coord
 from musetalk.utils.blending import get_image
 from musetalk.utils.utils import load_all_model
 
-class InferenceConfig:
+class mt_InferenceConfig:
     def __init__(self, video_path, audio_path, bbox_shift=0, result_dir='Inference_results/MuseTalk', 
                  fps=25, batch_size=8, output_vid_name='YaQian_refer.mp4', 
                  use_saved_coord=False, use_float16=False):
@@ -169,7 +169,7 @@ def run_inference_from_args():
 
     # args = parser.parse_args()
         # print(args, "-------------------------------------------------------------------------------------------------------------------------")
-    config = InferenceConfig(
+    config = mt_InferenceConfig(
             video_path="Inference_results/Originals/Yaqian_original_image_preprocessed.jpg",
             audio_path="Inference_results/Originals/YaQian_Refer.wav",
             bbox_shift=0,

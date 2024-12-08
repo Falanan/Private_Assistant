@@ -191,7 +191,7 @@ class Wav2LipInference:
         command = f'ffmpeg -y -loglevel quiet -i {self.config.audio} -i wav2lip_core/temp/result.avi {self.config.outfile}'
         subprocess.call(command, shell=True)
 
-class InferenceConfig:
+class w2l_InferenceConfig:
     def __init__(self, checkpoint_path, face, audio, outfile='output/result_voice.mp4', static=False, fps=25.0,
                  pads=[0, 10, 0, 0], face_det_batch_size=16, wav2lip_batch_size=128, resize_factor=1,
                  crop=[0, -1, 0, -1], box=[-1, -1, -1, -1], rotate=False, nosmooth=False):
@@ -257,7 +257,7 @@ if __name__ == '__main__':
     # outfile="wav2lip_core/output/synced_video.mp4"
     # )
 
-    config = InferenceConfig(
+    config = w2l_InferenceConfig(
     checkpoint_path="Models_Pretrained/wav2lip/wav2lip_gan.pth",
     face="wav2lip_core/inputs/1012.mp4",
     audio="Inference_results/Originals/Yae_Miko_Refer.wav",

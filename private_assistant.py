@@ -16,7 +16,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "gptsovi
 from gptsovits_core.GPT_SoVITS.tools.i18n.i18n import I18nAuto
 from gptsovits_core.GPT_SoVITS.inference_webui import change_gpt_weights, change_sovits_weights, get_tts_wav
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "wav2lip_core")))
-from wav2lip_core.wav2lip_module import Wav2LipInference, InferenceConfig
+from wav2lip_core.wav2lip_module import Wav2LipInference, w2l_InferenceConfig
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "musetalk")))
+from musetalk import musetalk_module
 
 
 _stdout_backup = sys.stdout
@@ -136,10 +138,10 @@ def main():
             reference_avatar_path = os.path.join(reference_avatar_path, "zh")
             reference_audio_path = os.path.join(reference_audio_path, "zh")
             reference_text_path = os.path.join(reference_text_path, "zh")
-            print("You selected Chinese.")
+            print("你选择了中文.")
             break
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid choice(无效数字). Please enter 1 or 2.")
 
     # Get model selection and update models path
     while True:
@@ -156,7 +158,7 @@ def main():
             reference_audio_path = os.path.join(reference_audio_path, model_name[0] + ".wav")
             reference_text_path = os.path.join(reference_text_path, model_name[0] + ".txt")
 
-            print("You selected", model_name[choice-1],"model")
+            print("You selected", model_name[0],"model")
             break
         else:
             print("Invalid choice. Please enter again")
@@ -176,7 +178,7 @@ def main():
         change_sovits_weights(sovits_path=gs_sovits_weight_path)
 
         # Initilize Wav2Lip model
-        wav2lip_config = InferenceConfig(
+        wav2lip_config = w2l_InferenceConfig(
             checkpoint_path=wav2lip_path,
             face=reference_avatar_path,
             audio="temp/t2s_output.wav",
@@ -228,29 +230,71 @@ def main():
 
 
 
-        # while True:
-        #     user_input = input("\nYou: ")
-        #     if user_input.lower() in ["exit", "quit"]:
-        #         break
-        #     response = chatbot.generate_response(user_input)
-        #     # toggle_output(False)
-        #     synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
-        #     wav2lip_inference.run_inference()
-        #     # window.load_video("temp/synced_video.mp4")
-        #     # window.append_dialogue(response)
-        #     # toggle_output(True)
-        #     print("GLM-4:", response)
-
-
-
     elif language == "zh":
-        toggle_output(False)
+        # toggle_output(False)
         # TODO: Load all models works for Chinese
         #  1. GLM-4 2. GPT-SoVITS 3. MuseTalk
-        toggle_output(True)
+        chatbot = GLMChatbot()
+
+        # Initilize GPT-SoVITS model
+        change_gpt_weights(gpt_path=gs_gpt_weight_path)
+        change_sovits_weights(sovits_path=gs_sovits_weight_path)
+
+        musetalk_config = musetalk_module.mt_InferenceConfig(
+            # video_path="temp/t2s_output.wav",
+            video_path=reference_avatar_path,
+            audio_path="temp/t2s_output.wav",
+            bbox_shift=0,
+            result_dir='temp',
+            fps=25,
+            batch_size=8,
+            output_vid_name='synced_video.mp4',
+            use_saved_coord=False,
+            use_float16=True
+        )
+        
+        musetalk_inference = musetalk_module.MuseTalkInference(musetalk_config)
+
+        # toggle_output(True)
         print("主人您好，我是您由GLM4, GPT-SoVITS and Wav2Lip驱动的的私人助理。请问今天我有什么可以帮到你？")
         response = "主人您好，我是您的的私人助理。请问今天我有什么可以帮到你"
         # Generate the voice and lip movement
+        synthesize(reference_audio_path, reference_text_path, "中文", response, "中文", temp_file_path, how_to_cut = i18n("按中文句号。切"))
+        musetalk_inference.process_video()
+        # Launch GUI
+        app = QApplication(sys.argv)
+        window = MainWindow()
+        window.show()
+        window.load_video("temp/synced_video.mp4")
+        window.append_dialogue("Assistant: " + response + "\n")
+        def handle_user_input(user_input_text):
+            # nonlocal user_input  # Declare nonlocal to modify the variable
+            # user_input = user_input_text  # Assign user input to the variable
+            if user_input_text.lower() in ["exit", "quit"]:
+            # if user_input.lower() in ["exit", "quit"]:
+                print("Exiting...")
+                app.quit()
+            elif user_input_text != "":
+                # window.submit_button.setEnabled(False)
+                window.append_dialogue("You: " + user_input_text + "\n")
+                time.sleep(2)
+                response = chatbot.generate_response(user_input_text)
+                # synthesize(reference_audio_path, reference_text_path, "英文", clean_text(response), "英文", temp_file_path, how_to_cut = i18n("按英文句号.切"))
+                synthesize(reference_audio_path, reference_text_path, "中文", response, "中文", temp_file_path, how_to_cut = i18n("按中文句号。切"))
+                musetalk_inference.process_video()
+                window.load_video("temp/synced_video.mp4")
+                window.append_dialogue("Assistant: " + response + "\n")
+                window.submit_button.setEnabled(True)
+            else:
+                window.submit_button.setEnabled(True)
+
+        window.user_input_signal.connect(handle_user_input)
+
+
+
+
+
+
 
     sys.exit(app.exec_())
 
