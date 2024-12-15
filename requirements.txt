@@ -70,3 +70,4 @@ einops
 pillow
 sse-starlette
 bitsandbytes
+PyQt5
