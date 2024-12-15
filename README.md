@@ -170,7 +170,7 @@ Inference Text: 主人你好，请问你需要什么帮助？(English Translatio
 
 ## GUI feature
 
-<img src=Inference_results/gui.png >
+<img src=Inference_results/gui.png width="50%">
 
 ### GLM-4
 
