@@ -168,6 +168,10 @@ Inference Text: 主人你好，请问你需要什么帮助？(English Translatio
   </tr>
 </table >
 
+## GUI feature
+
+<img src=Inference_results/gui.png >
+
 ### GLM-4
 
 <img src=Inference_results\glm.png  width="95%">
