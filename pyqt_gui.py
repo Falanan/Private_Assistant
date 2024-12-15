@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Video Player and Dialogue Box")
+        self.setWindowTitle("Private Assistant Interface")
         self.resize(800, 1600)
 
         # Main layout
